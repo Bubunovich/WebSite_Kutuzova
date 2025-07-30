@@ -1,0 +1,288 @@
+@font-face {
+    font-family: Monument Extended;
+    src: url(fonts/MonumentExtended-Regular.otf) format(opentype);
+    font-weight: 100;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Monument Extended;
+    overflow-x: hidden;
+    background-color: rgb(19, 15, 39);
+    transition: background-image 1.5s ease, background-color 1.5s ease;
+}
+
+.center-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loader {
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background-image: url('resources/dark-art-image.png');
+    background-size: cover;
+    background-position: center;
+    animation:
+        shrink 0.8s ease-out forwards,
+        expandToScreen 1.5s 0.8s ease-out forwards;
+}
+
+.header { 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2% 5%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    animation: fadeIn 0.5s 2.3s ease-out forwards;
+    transition: all 1.5s ease;
+    backdrop-filter: blur(5px);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    color: #fff;
+}
+
+.container h1 {
+    font-size: 2.7vw;
+    font-weight: 100;
+}
+
+.nav {
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5vw;
+    transition: color 0.3s;
+    font-family: Serif;
+    transition: all 1.5s ease;
+}
+
+.name-block {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5vw;
+    color: white;
+    opacity: 0;
+    animation: fadeIn 0.5s 2.8s ease-out forwards;
+    z-index: 100;
+    text-align: center;
+    background-color: rgb(42,27,61,0.77);
+    padding: 10% 5%;
+    border-radius: 1vw;
+    transition: all 1.5s ease;
+    white-space: nowrap;
+}
+
+.lang {
+    display: flex;
+    align-items: center;
+}
+
+.lang img {
+    max-width: 1.3vw;
+    margin-right: 0.5em ;
+}
+
+.lang p {
+    font-size: 1.5vw;
+    font-family: Serif;
+}
+
+@keyframes shrink {
+    to {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@keyframes expandToScreen {
+    0% {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
+
+    30% {
+        border-radius: 30%;
+    }
+
+    60% {
+        border-radius: 15%;
+    }
+
+    100% {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.main-content {
+    width: 100%;
+    margin-top: 2%;
+    overflow: hidden;
+}
+
+.side-panels {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 4% 5%;
+    position: relative;
+}
+
+.left-panel .right-panel {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    max-width: 40%;
+    padding: 5% 5%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: transform, opacity;
+}
+
+.left-panel {
+    opacity: 0;
+    left: 0;
+    align-items: flex-start;
+    text-align: left;
+    transform: translateX(-100%);
+}
+
+.right-panel {
+    opacity: 0;
+    right: 0;
+    transform: translateX(100%);
+    align-items: flex-end;
+    text-align: right;
+}
+
+.artist {
+    color: rgb(255,255,255,0.7);
+    font-size: 2.5vw;
+    padding: 1% 0;
+}
+
+.artist-description {
+    color: #fff;
+    font-size: 3vw;
+    white-space: nowrap;
+}
+
+/* Стили для изображений */
+.left-panel img {
+    max-width: 82%;
+    border-radius: 5px;
+    transition: transform 0.5s ease;
+    padding-top: 5%;
+}
+
+.right-panel img {
+    max-width: 82%;
+    border-radius: 5px;
+    transition: transform 0.5s ease;
+}
+
+.technique-description {
+    color: #fff;
+    font-size: 3vw;
+    white-space: nowrap;
+    padding: 1% 0;
+}
+
+/* Расположение элементов в панелях */
+.left-panel .artist-description {
+    margin-right: auto;
+}
+
+.right-panel .technique-description {
+    margin-left: auto;
+}
+
+/* Анимации (оставлены без изменений) */
+@keyframes shrink {
+    to { 
+        width: 120px; 
+        height: 120px; 
+    }
+}
+
+@keyframes expandToScreen {
+    0% { 
+        width: 120px;
+        height: 120px; 
+        border-radius: 50%; 
+    }
+    30% { 
+        border-radius: 30%; 
+    }
+    60% { 
+        border-radius: 15%; 
+    }
+    100% { 
+        width: 100vw; 
+        height: 100vh;
+        border-radius: 0; 
+        top: 0; 
+        left: 0; 
+        transform: none; 
+    }
+}
+
+@keyframes fadeIn {
+    to { 
+        opacity: 1; 
+    }
+}
+
+.show-panels .left-panel {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.5s;
+    pointer-events: auto;
+}
+
+.show-panels .right-panel {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: 0.5s;
+    pointer-events: auto;
+}
