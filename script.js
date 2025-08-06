@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav a');
     const lang = document.querySelector('.lang');
     const langImg = document.querySelector('.lang img');
-    const leftPanel = document.querySelector('.left-panel');
-    const rightPanel = document.querySelector('.right-panel');
-    const mainContent = document.querySelector('.main-content');
+    const mainContent = document.getElementById('main-content');
     
     const imageUrlDark = 'resources/dark-art-image.png';
     const imageUrlLight = 'resources/light-art-image.png';
@@ -19,14 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализация начального состояния
     header.style.position = 'fixed';
     header.style.top = '0';
-    mainContent.style.marginTop = header.offsetHeight + 'px';
 
     setTimeout(() => {
         loader.style.transition = 'opacity 0.5s ease';
         loader.style.opacity = '0';
         
         document.body.style.transition = 'background-image 0.5s ease';
-        document.body.style.backgroundImage = "url('" + imageUrlDark + "')";
+        document.body.style.backgroundImage = 'url(' + imageUrlDark + ')';
         document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundPosition = 'center';
         document.body.style.backgroundAttachment = 'fixed';
@@ -47,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.style.transition = 'color 1.5s ease';
                 });
                 
-                document.body.style.backgroundImage = "url('" + imageUrlLight + "')";
+                document.body.style.backgroundImage = 'url(' + imageUrlLight + ')';
                 header.style.backgroundColor = 'rgba(10, 8, 20, 0.2)';
                 header.style.color = '#000';
                 container_h1.style.color = '#000';
@@ -72,9 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         link.style.transition = 'color 1.5s ease';
                     });
 
-                    document.body.style.backgroundImage = 'none';
-                    document.body.style.backgroundColor = 'rgb(19, 15, 39)';
-                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                    document.body.style.backgroundImage = "none";
+                    document.body.style.backgroundColor = "rgb(19, 15, 39);";
+                    header.style.backgroundColor = 'rgba(0, 0, 0)';
                     container_h1.style.color = '#fff';
                     lang.style.color = '#fff';
                     langImg.src = imageLangLight;
@@ -88,25 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     setTimeout(() => {
                         
-                        header.style.position = 'absolute';
-                        header.style.top = window.scrollY + 'px';
+                        header.style.position = 'relative';
                         
-                        setTimeout(() => {
-                            header.style.position = 'static';
-                            mainContent.style.marginTop = '0';
-                            header.style.transition = 'all 1.5s ease';
-                            
-                            // Анимация боковых панелей
-                            leftPanel.style.transition = 'all 1.2s ease';
-                            rightPanel.style.transition = 'all 1.2s ease 0.2s';
 
-                            leftPanel.style.opacity = '1';
-                            leftPanel.style.transform = 'translateX(0)';
-
-                            rightPanel.style.opacity = '1';
-                            rightPanel.style.transform = 'translateX(0)';
-                            
-                        }, 100);
+                        mainContent.style.transition = 'opacity 1s ease';
+                        mainContent.style.opacity = '1';
                         
                     }, 500);
 

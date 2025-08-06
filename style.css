@@ -1,7 +1,25 @@
 @font-face {
-    font-family: Monument Extended;
-    src: url(fonts/MonumentExtended-Regular.otf) format(opentype);
-    font-weight: 100;
+    font-family: 'Monument Extended';
+    src: url('fonts/MonumentExtended-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Segoe UI Symbol';
+    src: url('fonts/segoe-ui-symbol.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PT Serif Caption';
+    src: url('fonts/PTSerifCaption-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 * {
@@ -11,7 +29,6 @@
 }
 
 body {
-    font-family: Monument Extended;
     overflow-x: hidden;
     background-color: rgb(19, 15, 39);
     transition: background-image 1.5s ease, background-color 1.5s ease;
@@ -42,11 +59,12 @@ body {
 }
 
 .header { 
+    font-family: 'Monument Extended';
     position: fixed;
     top: 0;
     width: 100%;
     padding: 2% 5%;
-    z-index: 100;
+    z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
     opacity: 0;
     animation: fadeIn 0.5s 2.3s ease-out forwards;
@@ -62,8 +80,9 @@ body {
 }
 
 .container h1 {
-    font-size: 2.7vw;
-    font-weight: 100;
+    font-size: clamp(24px, 2.3vw, 40px);
+    white-space: nowrap;
+    font-family: 'Monument Extended';
 }
 
 .nav {
@@ -75,10 +94,12 @@ body {
 .nav a {
     text-decoration: none;
     color: #fff;
-    font-size: 1.5vw;
+    font-size: clamp(12px, 1.2vw, 20px);
     transition: color 0.3s;
     font-family: Serif;
     transition: all 1.5s ease;
+    white-space: nowrap;
+    font-family: 'Monument Extended';
 }
 
 .name-block {
@@ -93,10 +114,11 @@ body {
     z-index: 100;
     text-align: center;
     background-color: rgb(42,27,61,0.77);
-    padding: 10% 5%;
+    padding: 5% 2%;
     border-radius: 1vw;
     transition: all 1.5s ease;
     white-space: nowrap;
+    font-family: 'PT Serif Caption';
 }
 
 .lang {
@@ -105,12 +127,13 @@ body {
 }
 
 .lang img {
-    max-width: 1.3vw;
+    max-width: 16px;
+    width: 1.2vw;
     margin-right: 0.5em ;
 }
 
 .lang p {
-    font-size: 1.5vw;
+    font-size: clamp(16px, 1.2vw, 20px);
     font-family: Serif;
 }
 
@@ -153,136 +176,128 @@ body {
 }
 
 .main-content {
-    width: 100%;
-    margin-top: 2%;
-    overflow: hidden;
+    opacity: 0;
+    transition: opacity 1s ease; /* Добавляем плавное появление */
 }
 
-.side-panels {
-    display: flex;
+.art-content {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), /* Градиентное затемнение */
+        url('resources/dark-art-image.png') center/cover fixed;
+    margin: 0;
+    min-height: 100vh;
     width: 100%;
-    justify-content: space-between;
-    padding: 4% 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
-.left-panel .right-panel {
-    position: absolute;
-    top: 0;
-    width: 40%;
-    max-width: 40%;
-    padding: 5% 5%;
-    box-sizing: border-box;
+.art-description {
     display: flex;
     flex-direction: column;
-    transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1);
-    will-change: transform, opacity;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'Segoe UI Symbol';
 }
 
-.left-panel {
-    opacity: 0;
-    left: 0;
-    align-items: flex-start;
-    text-align: left;
-    transform: translateX(-100%);
+.art-description h1 {
+    font-size: clamp(48px, 5vw, 96px);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    font-weight: normal;
 }
 
-.right-panel {
-    opacity: 0;
-    right: 0;
-    transform: translateX(100%);
-    align-items: flex-end;
-    text-align: right;
-}
-
-.artist {
-    color: rgb(255,255,255,0.7);
-    font-size: 2.5vw;
-    padding: 1% 0;
-}
-
-.artist-description {
-    color: #fff;
-    font-size: 3vw;
+.art-description p {
+    font-size: clamp(14px, 1.7vw, 28px);
+    font-style: Serif;
     white-space: nowrap;
+    margin: 5% 5%;
 }
 
-/* Стили для изображений */
-.left-panel img {
-    max-width: 82%;
-    border-radius: 5px;
-    transition: transform 0.5s ease;
-    padding-top: 5%;
+.info-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5vw;
+    margin: 5% 0%;
 }
 
-.right-panel img {
-    max-width: 82%;
-    border-radius: 5px;
-    transition: transform 0.5s ease;
+.works-btn {
+    border: none;
+    background: #fff;
+    color: #000;
+    padding: 10px 30px;
 }
 
-.technique-description {
+.technique-btn {
+    border: 2px solid #fff;
+    background: transparent;
     color: #fff;
-    font-size: 3vw;
-    white-space: nowrap;
-    padding: 1% 0;
+    padding: 10px 30px;
 }
 
-/* Расположение элементов в панелях */
-.left-panel .artist-description {
-    margin-right: auto;
+.collections-content {
+    padding: 80px 10%;
+    color: #fff;
 }
 
-.right-panel .technique-description {
-    margin-left: auto;
+.collections-content h2 {
+    font-size: 2.5rem;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
 }
 
-/* Анимации (оставлены без изменений) */
-@keyframes shrink {
-    to { 
-        width: 120px; 
-        height: 120px; 
-    }
+.collections-intro {
+    font-family: 'Segoe UI Symbol';
+    text-align: center;
+    font-size: clamp(16px, 1.5vw, 20px);
+    margin: auto;
+    color: #A186B9;
+    
 }
 
-@keyframes expandToScreen {
-    0% { 
-        width: 120px;
-        height: 120px; 
-        border-radius: 50%; 
-    }
-    30% { 
-        border-radius: 30%; 
-    }
-    60% { 
-        border-radius: 15%; 
-    }
-    100% { 
-        width: 100vw; 
-        height: 100vh;
-        border-radius: 0; 
-        top: 0; 
-        left: 0; 
-        transform: none; 
-    }
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 40px;
 }
 
-@keyframes fadeIn {
-    to { 
-        opacity: 1; 
-    }
+.collection {
+    width: 100%;
+    height: 100%;
+    max-width: 384px;
+    max-height: 392px;
+    padding-bottom: 5%;
+    border-radius: 12px;
+    background-color: rgb(26,29,35);
 }
 
-.show-panels .left-panel {
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: 0.5s;
-    pointer-events: auto;
+.collection img {
+    width: 100%;
+    max-width: 382px;
+    height: 100%;
+    max-height: 286px;
+    border-radius: 12px 12px 0 0;
 }
 
-.show-panels .right-panel {
-    opacity: 1;
-    transform: translateX(0);
-    transition-delay: 0.5s;
-    pointer-events: auto;
+.collection h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    font-weight: 100;
+    padding: 2% 5%;
+}
+
+.collection p {
+    color: rgb(240,242,245,0.7);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    padding: 0 5%;
 }
