@@ -1,3 +1,72 @@
+function initProjectCards() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const projectId = this.dataset.project;
+            
+            // Снимаем активное состояние со всех карточек
+            projectCards.forEach(card => {
+                card.classList.remove('active');
+                const status = card.querySelector('.status');
+                if (status) {
+                    status.textContent = 'Завершено';
+                    status.classList.remove('active');
+                    status.classList.add('completed');
+                }
+            });
+            
+            // Устанавливаем активное состояние для выбранной карточки
+            this.classList.add('active');
+            const currentStatus = this.querySelector('.status');
+            if (currentStatus) {
+                currentStatus.textContent = 'Активен';
+                currentStatus.classList.remove('completed');
+                currentStatus.classList.add('active');
+            }
+            
+            // Скрываем все контенты и оверлеи
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.image-overlay').forEach(overlay => {
+                overlay.classList.remove('active');
+            });
+            
+            // Показываем соответствующий контент и оверлей
+            const content = document.getElementById(`${projectId}-content`);
+            const overlay = document.getElementById(`${projectId}-overlay`);
+            if (content) content.classList.add('active');
+            if (overlay) overlay.classList.add('active');
+            
+            // Обновляем изображение
+            const imageContainer = document.querySelector('.project-image img');
+            const projectImages = {
+                'energy': 'resources/energy-image.png',
+                'luminis': 'resources/luminis-image.png',
+                'luminescence': 'resources/luminescence-image.png',
+                'skolkovo': 'resources/skolkovo-image.png',
+                'neon': 'resources/neon-image.png',
+                'neformat': 'resources/neformat-image.png'
+            };
+            
+            if (projectImages[projectId]) {
+                imageContainer.src = projectImages[projectId];
+                imageContainer.alt = this.querySelector('h3').textContent;
+            }
+        });
+    });
+    
+    // Активируем первую карточку по умолчанию
+    const firstCard = document.querySelector('.project-card.active');
+    if (firstCard) {
+        const firstProjectId = firstCard.dataset.project;
+        document.getElementById(`${firstProjectId}-content`).classList.add('active');
+        document.getElementById(`${firstProjectId}-overlay`).classList.add('active');
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.querySelector('.loader');
     const center_container = document.querySelector('.center-container');
@@ -100,4 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
         
     }, 3000);
+    
+    setTimeout(initProjectCards, 3500);
 });
