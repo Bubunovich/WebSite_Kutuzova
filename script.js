@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     document.body.style.backgroundImage = "none";
-                    document.body.style.backgroundColor = "rgb(19, 15, 39);";
+                    document.body.style.backgroundColor = "rgb(10, 8, 20);";
                     header.style.backgroundColor = 'rgba(0, 0, 0)';
                     container_h1.style.color = '#fff';
                     lang.style.color = '#fff';

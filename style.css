@@ -29,8 +29,11 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
     background-color: rgb(19, 15, 39);
+    
 }
 
 .center-container {
@@ -237,15 +240,18 @@ body {
     padding: 10px 30px;
 }
 
+/*Коллекции*/
 .collections-content {
     padding: 80px 10%;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .collections-content h2 {
     font-size: clamp(16px, 3.5vw, 60px);
     font-weight: 100;
-    text-align: center;
     margin-bottom: 30px;
     letter-spacing: 2px;
 }
@@ -266,6 +272,7 @@ body {
     margin-top: 4vh;
     width: 100%;
     padding: 0 2vw;
+    align-items: center;
 }
 
 .collection {
@@ -275,6 +282,7 @@ body {
     max-height: 392.5px;
     border-radius: 12px;
     background-color: rgb(26,29,35);
+    margin: 0 auto;
 }
 
 .collection img {
@@ -690,3 +698,245 @@ body {
     line-height: clamp(16px, 2vw, 20px);
     color: rgba(240, 242, 245, 0.7);
 }
+
+/*Уникальная техника*/
+.unique-technique {
+    padding: clamp(40px, 8vw, 80px) clamp(20px, 10vw, 10%);
+    color: #fff;
+    font-family: 'Segoe UI Symbol', sans-serif;
+}
+
+.unique-technique-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.unique-technique-title {
+    text-align: center;
+    font-size: clamp(20px, 3vw, 30px);
+    margin-bottom: 1vh;
+}
+
+.unique-technique-subtitle {
+    text-align: center;
+    font-size: clamp(16px, 1.5vw, 20px);
+    margin-bottom: 2vh;
+    font-weight: 100;
+}
+
+.unique-technique-group {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 5fr));
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 clamp(20px, 10vw, 10%);
+}
+
+.unique-technique-card {
+    background-color: rgb(26,29,35);
+    border-radius: 15px;
+    border: 1px solid rgb(43,48,59,0.5);
+    width: 100%;
+    height: auto;
+    max-width: 330px;
+    max-height: 258px;
+    text-align: center;
+    padding: 22px 0;
+    margin: 0 auto;
+}
+
+.unique-technique-card-title {
+    font-size: clamp(16px, 1.5vw, 20px);
+}
+
+.unique-technique-card-text {
+    color: rgb(240,242,245,0.7);
+    font-size: clamp(6px, 0.8vw, 14px);
+    margin-top: 5px;
+}
+
+.unique-technique-card-text.two {
+    margin-top: 25px;
+}
+
+.unique-technique-description {
+    font-size: clamp(14px, 1.5vw, 25px);
+    text-align: center;
+    font-weight: 100;
+}
+
+.full-biography {
+    margin: auto;
+    margin-top: clamp(20px, 5vw, 40px);
+}
+
+.full-biography a{
+    font-size: clamp(18px, 1.5vw, 20px);
+    color: #000;
+    text-decoration: none;
+    background-color: rgb(189,147,185);
+    border-radius: 8px;
+    padding: clamp(0px, 1.2vw, 15px) clamp(0px, 6.5vw, 100px);
+}
+
+/*Контакты*/
+.contacts {
+    padding: clamp(40px, 8vw, 80px) clamp(20px, 10vw, 10%);
+    color: #fff;
+    font-family: 'Segoe UI Symbol', sans-serif;
+    position: relative;
+    height: 900px;
+}
+
+.contacts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
+
+.contacts-title {
+    text-align: center;
+    font-size: clamp(24px, 3.5vw, 60px);
+}
+
+.contacts-subtitle {
+    text-align: center;
+    font-size: clamp(18px, 1.5vw, 20px);
+    color: rgb(161,134,185);
+}
+
+.contacts-card {
+    max-width: 576px;
+    max-height: 170px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(26,29,35);
+    border-radius: 12px;
+    outline: 1px solid rgba(43, 48, 59, 0.50);
+}
+
+.card-1 {
+    margin-top: 169px;
+}
+
+.card-2 {
+    margin-top: 313px;
+}
+
+.card-3 {
+    margin-top: 468px;
+}
+
+.email-card {
+    max-height: 150px;
+    margin-top: 617px;
+}
+
+.contacts-card-top {
+    display: flex;
+}
+
+.contacts-icon {
+   font-size: 15px;
+   position: absolute;
+   margin-left: 25px;
+   margin-top: 33px;
+}
+
+.contacts-card-title {
+    font-size: clamp(18px, 1.5vw, 20px);
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+.contacts-card-text {
+    font-size: clamp(14px, 1.6vw, 16px);
+    color: rgba(240, 242, 245, 0.7);
+    position: absolute;
+    margin-left: 49px;
+    margin-top: 61px;
+}
+
+.contacts-card-email-container {
+    position: absolute;
+    margin-left: 355px;
+    margin-top: 88px;
+    background-color: rgb(26,29,35);
+    border-radius: 8px;
+    width: 202px;
+    height: 43px;
+}
+
+.contacts-card-email {
+    margin-left: 9px;
+    margin-top: 14px;
+    position: absolute;
+    justify-content: center;
+    color: rgb(196,77,255);
+}
+
+/*Новые проекты*/
+.new-project {
+    
+    font-family: 'Segoe UI Symbol', sans-serif;
+}
+
+.new-project-container {
+    color: #fff;
+    background-color: rgb(26,29,35);
+    border-radius: 15px;
+    border: 1px solid rgb(43,48,59,0.5);
+    width: 576px;
+    height: auto;
+    text-align: center;
+    padding: 22px 0;
+    margin: 0 auto;
+}
+
+.new-project-title {
+    font-size: clamp(18px, 1.5vw, 20px);
+}
+
+.new-project-icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 140px;
+}
+
+.new-project-icons img {
+    max-width: 48px;
+    max-height: 48px;
+    gap: 5rem;
+}
+
+/*Футер*/
+.footer {
+    margin-top: clamp(40px, 10vw, 120px);
+    width: 100%;
+    background: #12111A;
+    height: 172px;
+    border-top: 1px solid rgb(43,48,59,0.5);
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-title {
+    color: rgb(240,242,245,0.6);
+    font-size: clamp(14px, 1.6vw, 16px);
+    margin-top: 33px;
+}
+
+.footer-text {
+    color: rgb(240,242,245,0.4);
+    font-size: clamp(6px, 0.8vw, 14px);
+    margin-top: 20px;
+}
+
