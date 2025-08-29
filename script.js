@@ -57,6 +57,7 @@ function initProjectCards() {
         });
     });
     
+    
     // Активируем первую карточку по умолчанию
     const firstCard = document.querySelector('.project-card.active');
     if (firstCard) {
