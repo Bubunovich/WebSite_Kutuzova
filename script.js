@@ -1,15 +1,43 @@
 function initProjectCards() {
     const projectCards = document.querySelectorAll('.project-card');
+    const firstCard = document.querySelector('.project-card');
+    
+    // Устанавливаем статус "Активен" для первой карточки навсегда
+    if (firstCard) {
+        const firstStatus = firstCard.querySelector('.status');
+        if (firstStatus) {
+            firstStatus.textContent = 'Активен';
+            firstStatus.classList.add('active');
+            firstStatus.classList.remove('completed');
+            
+            // Делаем статус первой карточки неизменяемым
+            firstStatus.setAttribute('data-fixed', 'true');
+        }
+    }
+    
+    // Для остальных карточек устанавливаем статус "Завершено"
+    projectCards.forEach((card, index) => {
+        if (index !== 0) {
+            const status = card.querySelector('.status');
+            if (status) {
+                status.textContent = 'Завершено';
+                status.classList.remove('active');
+                status.classList.add('completed');
+            }
+        }
+    });
     
     projectCards.forEach(card => {
         card.addEventListener('click', function() {
             const projectId = this.dataset.project;
             
-            // Снимаем активное состояние со всех карточек
+            // Снимаем активное состояние со всех карточек (кроме фиксированного статуса первой)
             projectCards.forEach(card => {
                 card.classList.remove('active');
+                
+                // Меняем статус только у тех карточек, которые не являются первой
                 const status = card.querySelector('.status');
-                if (status) {
+                if (status && !status.hasAttribute('data-fixed')) {
                     status.textContent = 'Завершено';
                     status.classList.remove('active');
                     status.classList.add('completed');
@@ -18,12 +46,6 @@ function initProjectCards() {
             
             // Устанавливаем активное состояние для выбранной карточки
             this.classList.add('active');
-            const currentStatus = this.querySelector('.status');
-            if (currentStatus) {
-                currentStatus.textContent = 'Активен';
-                currentStatus.classList.remove('completed');
-                currentStatus.classList.add('active');
-            }
             
             // Скрываем все контенты и оверлеи
             document.querySelectorAll('.project-content').forEach(content => {
@@ -57,11 +79,14 @@ function initProjectCards() {
         });
     });
     
-    
     // Активируем первую карточку по умолчанию
-    const firstCard = document.querySelector('.project-card.active');
     if (firstCard) {
         const firstProjectId = firstCard.dataset.project;
+        
+        // Устанавливаем активный класс для первой карточки
+        firstCard.classList.add('active');
+        
+        // Показываем контент первой карточки
         document.getElementById(`${firstProjectId}-content`).classList.add('active');
         document.getElementById(`${firstProjectId}-overlay`).classList.add('active');
     }
