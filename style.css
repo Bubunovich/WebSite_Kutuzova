@@ -22,11 +22,6 @@
     font-display: swap;
 }
 
-html, body {
-    min-height: 100vh;
-    scroll-behavior: smooth;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -36,18 +31,12 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(15, 12, 41, 0.3) 0%,
-            rgba(48, 43, 99, 0.3) 50%,
-            rgba(15, 12, 41, 0.3) 100%
-        ),
-        rgb(19, 15, 39);
+    background: rgb(19, 15, 39);
     overflow-x: hidden;
     font-family: 'Segoe UI Symbol';
     min-height: 100vh;
 }
+
 
 .circle {
     position: absolute;
@@ -252,7 +241,7 @@ body {
 }
 
 .art-content {
-    background: 
+     background: 
         linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), /* Градиентное затемнение */
         url('resources/dark-art-image.png') center/cover fixed;
     margin: 0;
@@ -1026,6 +1015,8 @@ body {
 
 /*Футер*/
 .footer {
+    opacity: 0;
+    transition: opacity 1s ease;
     margin-top: clamp(40px, 10vw, 120px);
     width: 100%;
     background: #12111A;

@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lang = document.querySelector('.lang');
     const langImg = document.querySelector('.lang img');
     const mainContent = document.getElementById('main-content');
+    const footer = document.querySelector('.footer');
     
     const imageUrlDark = 'resources/dark-art-image.png';
     const imageUrlLight = 'resources/light-art-image.png';
@@ -140,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
 
                     document.body.style.backgroundImage = "none";
-                    document.body.style.backgroundColor = "rgb(10, 8, 20);";
+                    document.body.style.background = "repeating-linear-gradient(to bottom,rgba(15, 12, 41, 0.3) 0vh,rgba(48, 43, 99, 0.3) 50vh,rgba(15, 12, 41, 0.3) 100vh),rgb(19, 15, 39)";
                     header.style.backgroundColor = 'rgba(0, 0, 0)';
                     container_h1.style.color = '#fff';
                     lang.style.color = '#fff';
@@ -154,13 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     nameBlock.remove();
                     
                     setTimeout(() => {
-                        
                         header.style.position = 'relative';
-                        
-
                         mainContent.style.transition = 'opacity 1s ease';
                         mainContent.style.opacity = '1';
-                        
+                        footer.style.transition = 'opacity 1s ease';
+                        footer.style.opacity = '1';
+
                     }, 500);
 
                 }, 3000);
