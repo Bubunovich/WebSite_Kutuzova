@@ -1206,6 +1206,10 @@ body {
         display: none;
     }
 
+    .author-title {
+        padding-bottom: 30px;
+    }
+
     .author-content-container-mobile {
         display: flex;
         grid-template-columns: none;
@@ -1228,11 +1232,9 @@ body {
         flex-direction: column;
         background: rgb(26,29,35);
         border-radius: 8px;
-        border-left: 1.5px solid rgb(138,56,245);
-        border-right: 1.5px solid rgb(138,56,245);
-        border-bottom: 1.5px solid rgb(138,56,245);
+        border: 1.5px solid rgb(138,56,245);
         border-top: none;
-        box-shadow: 0 0 10px 5px rgb(138,56,245,0.2);
+        box-shadow: 10px 5px 10px 5px rgb(138,56,245,0.2);
     }
 
     .project-image-mobile {
@@ -1250,15 +1252,15 @@ body {
     }
 
     .status-mobile {
-    position: absolute;
-    right: clamp(15px, 3vw, 20px);
-    top: clamp(15px, 3vw, 20px);
-    font-size: clamp(12px, 1.2vw, 12px);
-    padding: 3px 25px;
-    border-radius: 10px;
-    background: rgb(79, 131, 141,0.6);
-    color: #fff;
-}
+        position: absolute;
+        right: clamp(15px, 3vw, 20px);
+        top: clamp(15px, 3vw, 20px);
+        font-size: clamp(12px, 1.2vw, 12px);
+        padding: 3px 25px;
+        border-radius: 10px;
+        background: rgb(79, 131, 141,0.6);
+        color: #fff;
+    }
 
     .status-mobile.active {
         background: rgba(255,204,51,0.2);
@@ -1276,20 +1278,23 @@ body {
     }
 
     .image-overlay-mobile h2 {
-        font-size: clamp(20px, 3vw, 30px);
+        font-size: clamp(24px, 3vw, 30px);
         margin-bottom: 2px;
+        text-align: center;
     }
 
-    .image-overlay-mobile .location {
-        font-size: clamp(14px, 1.6vw, 24px);
+    .image-overlay-mobile .location-mobile {
+        font-size: clamp(18px, 1.6vw, 24px);
         margin-bottom: 5px;
         color: rgb(143,151,163);
+        text-align: center;
     }
 
-    .image-overlay-mobile .type {
-        font-size: clamp(14px, 1.6vw, 16px);
+    .image-overlay-mobile .type-mobile {
+        font-size: clamp(18px, 1.6vw, 16px);
         margin-bottom: 5px;
         color: rgb(196,77,255);
+        text-align: center;
     }
 
 
@@ -1305,12 +1310,6 @@ body {
         font-size: clamp(20px, 2.5vw, 28px);
         font-weight: normal;
         margin-bottom: clamp(10px, 2vw, 15px);
-    }
-
-    .location-mobile, .type-mobile {
-        font-size: clamp(14px, 1.6vw, 16px);
-        margin-bottom: clamp(10px, 2vw, 15px);
-        color: #fff;
     }
 
     .description-mobile p {
@@ -1352,6 +1351,10 @@ body {
         max-width: 356px;
     }
 
+    .about-author-title {
+        padding-bottom: 30px;
+    }
+
     .about-author-photo-container {
         margin: 0 auto;
     }
@@ -1385,6 +1388,7 @@ body {
 
     .unique-technique-title {
         font-size: 30px;
+        padding-bottom: 30px;
     }
 
     .unique-technique-subtitle {
@@ -1397,10 +1401,6 @@ body {
         text-align: center;
         font-weight: 100;
     }
-
-    .full-biography {
-        display: none;
-    }  
     
 
     /* Контакты */
@@ -1671,7 +1671,7 @@ body {
 
     .project-details-mobile {
         width: 339px;
-        height: 785px;
+        height: 786px;
         display: flex;
         flex-direction: column;
         background: rgb(26,29,35);
@@ -1680,7 +1680,7 @@ body {
         border-right: 1.5px solid rgb(138,56,245);
         border-bottom: 1.5px solid rgb(138,56,245);
         border-top: none;
-        box-shadow: 0 0 10px 5px rgb(138,56,245,0.2);
+        box-shadow: 10px 5px 10px 5px rgb(138,56,245,0.2);
     }
 
     .project-image-mobile {
@@ -1688,6 +1688,7 @@ body {
         height: 437px;
         width: 336px;
         overflow: hidden;
+        border-top: 1.5px solid rgb(138,56,245);
         border-radius: 8px 8px 0 0;
     }
 
@@ -1705,23 +1706,6 @@ body {
         padding: clamp(20px, 4vw, 40px);
         background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
         color: white;
-    }
-
-    .image-overlay-mobile h2 {
-        font-size: clamp(20px, 3vw, 30px);
-        margin-bottom: 2px;
-    }
-
-    .image-overlay-mobile .location {
-        font-size: clamp(14px, 1.6vw, 24px);
-        margin-bottom: 5px;
-        color: rgb(143,151,163);
-    }
-
-    .image-overlay-mobile .type {
-        font-size: clamp(14px, 1.6vw, 16px);
-        margin-bottom: 5px;
-        color: rgb(196,77,255);
     }
 
 
