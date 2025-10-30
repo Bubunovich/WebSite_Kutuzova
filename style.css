@@ -1561,6 +1561,7 @@ body {
 
     .art-description h1 {
         line-height: 2;
+        font-size: 40px;
     }
     .art-description p {
         white-space: wrap;
