@@ -402,12 +402,12 @@ body {
 
     .collection-year {
         text-align: center;
-        font-size: clamp(10px, 0.8vw, 14px);
+        font-size: clamp(14px, 0.8vw, 14px);
     }
 
     .collection-size {
         text-align: center;
-        font-size: clamp(10px, 0.8vw, 14px);
+        font-size: clamp(14px, 0.8vw, 14px);
         color: rgb(143,151,163);
     }
 }
@@ -415,7 +415,7 @@ body {
 .collection-description { 
     
     h3 {
-        font-size: clamp(16px, 1.2vw, 20px);
+        font-size: clamp(20px, 1.2vw, 20px);
         color: #fff;
         font-weight: 100;
         padding: 2% 5%;
@@ -425,7 +425,7 @@ body {
 
     p {
         color: rgb(240,242,245,0.7);
-        font-size: clamp(12px, 1vw, 16px);
+        font-size: clamp(16px, 1vw, 16px);
         line-height: 1.6;
         padding: 2% 5%;
         white-space: nowrap;
