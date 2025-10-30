@@ -1249,6 +1249,22 @@ body {
         object-fit: cover;
     }
 
+    .status-mobile {
+    position: absolute;
+    right: clamp(15px, 3vw, 20px);
+    top: clamp(15px, 3vw, 20px);
+    font-size: clamp(12px, 1.2vw, 12px);
+    padding: 3px 25px;
+    border-radius: 10px;
+    background: rgb(79, 131, 141,0.6);
+    color: #fff;
+}
+
+    .status-mobile.active {
+        background: rgba(255,204,51,0.2);
+        color: rgb(255,204,51);
+    }
+
     .image-overlay-mobile {
         position: absolute;
         bottom: 0;
@@ -1670,7 +1686,7 @@ body {
     .project-image-mobile {
         position: relative;
         height: 437px;
-        width: 339px;
+        width: 336px;
         overflow: hidden;
         border-radius: 8px 8px 0 0;
     }
