@@ -1300,6 +1300,7 @@ body {
 
     .project-info-mobile {
         padding: clamp(20px, 4vw, 30px);
+        text-align: center;
     }
 
     .project-content.active {
