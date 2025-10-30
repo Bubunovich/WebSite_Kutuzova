@@ -93,6 +93,8 @@ function initProjectCards() {
 }
 
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const loader = document.querySelector('.loader');
     const center_container = document.querySelector('.center-container');
@@ -198,3 +200,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
     setTimeout(initProjectCards, 3500);
 });
+
+    // ——— Мобильное бургер-меню ———
+    const burgerMenu = document.querySelector('.burger-menu');
+    const burgerIcon = document.querySelector('.burger-icon');
+    const nav = document.querySelector('.nav');
+
+    if (burgerMenu && burgerIcon && nav) {
+        burgerMenu.addEventListener('click', () => {
+            burgerIcon.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // При клике по ссылке меню закрывается
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                burgerIcon.classList.remove('active');
+            });
+        });
+    }
