@@ -15,10 +15,10 @@
         <div class="container">
             <h1>Elena Kutuzova</h1>
             <nav class="nav">
-                <a href="#">ПОРТФОЛИО</a>
-                <a href="#">АВТОРСКИЕ ПРОЕКТЫ</a>
-                <a href="#">ОБ АВТОРЕ</a>
-                <a href="#">КОНТАКТЫ</a>
+                <a href="#collection-content">ПОРТФОЛИО</a>
+                <a href="#author-projects">АВТОРСКИЕ ПРОЕКТЫ</a>
+                <a href="#about-author">ОБ АВТОРЕ</a>
+                <a href="#contacts">КОНТАКТЫ</a>
                 <div class="lang">
                     <img src="resources/light-language-image.png" alt="Language">
                     <p>EN</p>
@@ -45,8 +45,12 @@
                     Многолетние эксперименты с люминофоровами привели  к созданию <br>
                     техники двойного изображения»</p>
                 <div class="info-btn">
-                    <button class="works-btn">СМОТРЕТЬ РАБОТЫ</button>
-                    <button class="technique-btn">О ТЕХНИКЕ</button>
+                    <button class="works-btn" href="#collection-content">
+                        <a class="works-btn-text" href="#collection-content">СМОТРЕТЬ РАБОТЫ</a>
+                    </button>
+                    <button class="technique-btn" href="#unique-technique">
+                        <a class="technique-btn-text" href="#unique-technique">О ТЕХНИКЕ</a>
+                    </button>
                 </div>
             </div>
             <div class="scroll-indicator">
@@ -57,7 +61,7 @@
             </div>
         </section>
 
-        <section class="collections-content">
+        <section class="collections-content" id="collection-content">
             <div class="circle circle-collections one"></div>
             <div class="circle circle-collections two"></div>
             <h2>КОЛЛЕКЦИИ</h2>
@@ -112,7 +116,7 @@
                     <div class="collection-content">
                         <div class="collection-description">
                             <h3>Коллекция "Япония"</h3>
-                            <p>"Рыбы над водой выются <br> словно ветерком вымыться хотят"</p>
+                            <p>"Рыбы над водой выются <br> Словно ветерком вымыться хотят"</p>
                         </div>
                         <div class="collection-info">
                             <p class="collection-year">2014</p>
@@ -153,7 +157,7 @@
             </div>
         </section>
 
-        <section class="author-projects">
+        <section class="author-projects" id="author-projects">
             <div class="circle circle-author-projects one"></div>
             <div class="circle circle-author-projects two"></div>
             <p class="author-title">АВТОРСКИЕ <br> ПРОЕКТЫ</p>
@@ -530,7 +534,7 @@
         
         
 
-        <section class="about-author">
+        <section class="about-author" id="about-author">
             <div class="circle circle-about-author"></div>
             <p class="about-author-title">ОБ АВТОРЕ</p>
     
@@ -560,7 +564,7 @@
                             В 2025 году принята в академию International Academy IAMAQ/Международной <br> 
                             академии квантового искусства IAMAQ.
                         </p>
-                        <p class="about-author-dio-description">
+                        <p class="about-author-bio-description">
                             В 1994 году организовала проект-лабораторию "Мастерская Белого <br>
                             Цвета"(живопись, инсталляции, перформанс).
                         </p>
@@ -597,7 +601,7 @@
             </div>
         </section>
 
-        <section class="unique-technique">
+        <section class="unique-technique" id="unique-technique">
             <div class="circle circle-unique-technique"></div>
             <div class="unique-technique-container">
                 <p class="unique-technique-title">УНИКАЛЬНАЯ ТЕХНИКА</p>
@@ -670,7 +674,7 @@
             </div>
         </section>
 
-        <section class="contacts">
+        <section class="contacts" id="contacts">
             <div class="contacts-container">
                 <p class="contacts-title">КОНТАКТЫ</p>
                 <p class="contacts-subtitle">

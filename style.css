@@ -22,6 +22,10 @@
     font-display: swap;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -301,6 +305,11 @@ body {
     height: 58px;
 }
 
+.works-btn-text {
+    text-decoration: none;
+    color: #000;
+}
+
 .technique-btn {
     border: 2px solid #fff;
     background: transparent;
@@ -309,6 +318,12 @@ body {
     font-size: 20px;
     height: 58px;
 }
+
+.technique-btn-text {
+    text-decoration: none;
+    color: #fff;
+}
+
 
 .scroll-indicator {
     position: absolute;
@@ -1773,6 +1788,7 @@ body {
     .unique-technique-group {
         grid-template-columns: 1fr;
     }
+
 
     /* Контакты */
     .contacts {
