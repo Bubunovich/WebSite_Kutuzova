@@ -46,6 +46,8 @@ function toggleDayNightMode(button) {
         // Меняем иконку на лунную
         if (icon && nightIcon) {
             icon.src = nightIcon;
+            icon.style.width = '18px';
+            icon.style.height = '25px';
             icon.alt = 'Лунный свет';
         }
     } else {
@@ -59,6 +61,8 @@ function toggleDayNightMode(button) {
         // Меняем иконку на солнечную
         if (icon && dayIcon) {
             icon.src = dayIcon;
+            icon.style.width = '24px';
+            icon.style.height = '24px';
             icon.alt = 'Солнечный свет';
         }
     }

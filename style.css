@@ -690,4 +690,30 @@ body {
         max-width: 737px;
         max-height: 600px;
     }
+
+    .footer {
+        margin-top: clamp(40px, 10vw, 120px);
+        width: 100%;
+        background: #12111A;
+        height: 172px;
+        border-top: 1px solid rgb(43,48,59,0.5);
+    }
+
+    .footer-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-title {
+        color: rgb(240,242,245,0.6);
+        font-size: 14px;
+        margin-top: 33px;
+    }
+
+    .footer-text {
+        color: rgb(240,242,245,0.4);
+        font-size: 12px;
+        margin-top: 20px;
+    }
 }
