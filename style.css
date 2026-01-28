@@ -65,6 +65,12 @@ body {
     font-family: 'Monument Extended';
 }
 
+.container a {
+    text-decoration: none;
+    font-family: 'Monument Extended';
+    color: #fff;
+}
+
 .nav {
     display: flex;
     gap: 2vw;
@@ -284,6 +290,12 @@ body {
 
 .collection-light-info p {
     font-size: 24px;
+}
+
+.collection-card img,
+.collection-card-2 img,
+.collection-img-2 img {
+    transition: opacity 0.2s ease-in-out;
 }
 
 

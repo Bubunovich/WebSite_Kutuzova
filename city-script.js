@@ -1,49 +1,64 @@
-// Функция для переключения режима дневного/ночного света
+// Плавная смена изображения через fade
+function switchImageSmooth(imageElement, newSrc) {
+    if (!imageElement || !newSrc) return;
+
+    imageElement.style.opacity = '0';
+
+    setTimeout(() => {
+        imageElement.src = newSrc;
+
+        imageElement.onload = () => {
+            imageElement.style.opacity = '1';
+        };
+    }, 200);
+}
+
+// Функция переключения дневного / ночного режима
 function toggleDayNightMode(button) {
-    // Получаем ID изображения, связанного с этой кнопкой
+    // Получаем ID изображения
     const imageId = button.getAttribute('data-image');
 
-    // Ищем картинку внутри той же карточки (collection-card или collection-card-2).
-    // Если не найдено — fallback к документу (на всякий случай).
+    // Ищем карточку
     const card = button.closest('.collection-card, .collection-card-2, .collection-img-2');
     let imageElement = null;
+
     if (card) {
         imageElement = card.querySelector(`.${imageId}`);
     }
+
     if (!imageElement) {
         imageElement = document.querySelector(`.${imageId}`);
     }
+
     if (!imageElement) {
-        // ничего не нашли — выходим
         console.warn('Image element not found for', imageId);
         return;
     }
 
-    // Получаем текущий текст кнопки
+    // Текст кнопки
     const buttonText = button.querySelector('p');
     const isDayMode = buttonText && buttonText.textContent.trim() === 'Дневной свет';
 
-    // Получаем иконку
+    // Иконка
     const icon = button.querySelector('img');
 
-    // Получаем пути к изображениям из data-атрибутов
+    // Пути к изображениям
     const dayImage = imageElement.getAttribute('data-day');
     const nightImage = imageElement.getAttribute('data-night');
 
-    // Получаем пути к иконкам из data-атрибутов (если есть)
+    // Пути к иконкам
     const dayIcon = icon ? icon.getAttribute('data-day') : null;
     const nightIcon = icon ? icon.getAttribute('data-night') : null;
 
-    // Меняем изображение
+    // Переключение режимов
     if (isDayMode) {
-        // Переключаем на ночной режим (UV/ночь)
-        if (nightImage) imageElement.src = nightImage;
+        // Ночной режим
+        if (nightImage) switchImageSmooth(imageElement, nightImage);
         if (buttonText) buttonText.textContent = 'Уф освещение';
 
         button.style.border = '1px solid rgb(196,77,255)';
         button.style.boxShadow = '0 0 10px 10px rgba(196,77,255,0.1)';
 
-        // Меняем иконку на лунную
         if (icon && nightIcon) {
             icon.src = nightIcon;
             icon.style.width = '18px';
@@ -51,14 +66,13 @@ function toggleDayNightMode(button) {
             icon.alt = 'Лунный свет';
         }
     } else {
-        // Переключаем на дневной режим
-        if (dayImage) imageElement.src = dayImage;
+        // Дневной режим
+        if (dayImage) switchImageSmooth(imageElement, dayImage);
         if (buttonText) buttonText.textContent = 'Дневной свет';
 
         button.style.border = 'none';
         button.style.boxShadow = 'none';
 
-        // Меняем иконку на солнечную
         if (icon && dayIcon) {
             icon.src = dayIcon;
             icon.style.width = '24px';
@@ -68,10 +82,10 @@ function toggleDayNightMode(button) {
     }
 }
 
-// Добавляем обработчики событий для всех кнопок
-document.addEventListener('DOMContentLoaded', function() {
+// Назначаем обработчики кнопкам
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.collection-light, .collection-light-2').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             toggleDayNightMode(this);
         });
     });
