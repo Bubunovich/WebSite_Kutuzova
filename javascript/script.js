@@ -1,21 +1,18 @@
+// ------------------ Инициализация карточек проектов ------------------
 function initProjectCards() {
     const projectCards = document.querySelectorAll('.project-card');
     const firstCard = document.querySelector('.project-card');
     
-    // Устанавливаем статус "Активен" для первой карточки навсегда
     if (firstCard) {
         const firstStatus = firstCard.querySelector('.status');
         if (firstStatus) {
             firstStatus.textContent = 'Активен';
             firstStatus.classList.add('active');
             firstStatus.classList.remove('completed');
-            
-            // Делаем статус первой карточки неизменяемым
             firstStatus.setAttribute('data-fixed', 'true');
         }
     }
     
-    // Для остальных карточек устанавливаем статус "Завершено"
     projectCards.forEach((card, index) => {
         if (index !== 0) {
             const status = card.querySelector('.status');
@@ -30,38 +27,25 @@ function initProjectCards() {
     projectCards.forEach(card => {
         card.addEventListener('click', function() {
             const projectId = this.dataset.project;
-            
-            // Снимаем активное состояние со всех карточек (кроме фиксированного статуса первой)
-            projectCards.forEach(card => {
-                card.classList.remove('active');
-                
-                // Меняем статус только у тех карточек, которые не являются первой
-                const status = card.querySelector('.status');
-                if (status && !status.hasAttribute('data-fixed')) {
-                    status.textContent = 'Завершено';
-                    status.classList.remove('active');
-                    status.classList.add('completed');
+            projectCards.forEach(c => {
+                c.classList.remove('active');
+                const s = c.querySelector('.status');
+                if (s && !s.hasAttribute('data-fixed')) {
+                    s.textContent = 'Завершено';
+                    s.classList.remove('active');
+                    s.classList.add('completed');
                 }
             });
-            
-            // Устанавливаем активное состояние для выбранной карточки
             this.classList.add('active');
-            
-            // Скрываем все контенты и оверлеи
-            document.querySelectorAll('.project-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll('.image-overlay').forEach(overlay => {
-                overlay.classList.remove('active');
-            });
-            
-            // Показываем соответствующий контент и оверлей
+
+            document.querySelectorAll('.project-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.image-overlay').forEach(overlay => overlay.classList.remove('active'));
+
             const content = document.getElementById(`${projectId}-content`);
             const overlay = document.getElementById(`${projectId}-overlay`);
             if (content) content.classList.add('active');
             if (overlay) overlay.classList.add('active');
-            
-            // Обновляем изображение
+
             const imageContainer = document.querySelector('.project-image img');
             const projectImages = {
                 'energy': '/resources/energy-image.png',
@@ -71,31 +55,26 @@ function initProjectCards() {
                 'neon': '/resources/neon-image.png',
                 'neformat': '/resources/neformat-image.png'
             };
-            
-            if (projectImages[projectId]) {
+            if (projectImages[projectId] && imageContainer) {
                 imageContainer.src = projectImages[projectId];
-                imageContainer.alt = this.querySelector('h3').textContent;
+                const title = this.querySelector('h3');
+                imageContainer.alt = title ? title.textContent : '';
             }
         });
     });
     
-    // Активируем первую карточку по умолчанию
     if (firstCard) {
         const firstProjectId = firstCard.dataset.project;
-        
-        // Устанавливаем активный класс для первой карточки
         firstCard.classList.add('active');
-        
-        // Показываем контент первой карточки
-        document.getElementById(`${firstProjectId}-content`).classList.add('active');
-        document.getElementById(`${firstProjectId}-overlay`).classList.add('active');
+        const firstContent = document.getElementById(`${firstProjectId}-content`);
+        const firstOverlay = document.getElementById(`${firstProjectId}-overlay`);
+        if (firstContent) firstContent.classList.add('active');
+        if (firstOverlay) firstOverlay.classList.add('active');
     }
 }
 
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
+// ------------------ Intro control (single-run + pageshow-safe) ------------------
+(function() {
     const loader = document.querySelector('.loader');
     const center_container = document.querySelector('.center-container');
     const header = document.querySelector('.header');
@@ -106,102 +85,278 @@ document.addEventListener('DOMContentLoaded', () => {
     const langImg = document.querySelector('.lang img');
     const mainContent = document.getElementById('main-content');
     const footer = document.querySelector('.footer');
-    
+
     const imageUrlDark = '/resources/dark-art-image.png';
     const imageUrlLight = '/resources/light-art-image.png';
     const imageLangDark = '/resources/dark-language-image.png';
     const imageLangLight = '/resources/light-language-image.png';
 
-    // Инициализация начального состояния
-    header.style.position = 'fixed';
-    header.style.top = '0';
+    // Состояние: чтобы не запускать runIntro параллельно дважды
+    let introRunning = false;
 
-    setTimeout(() => {
-        loader.style.transition = 'opacity 0.5s ease';
-        loader.style.opacity = '0';
-        
-        document.body.style.transition = 'background-image 0.5s ease';
-        document.body.style.backgroundImage = 'url(' + imageUrlDark + ')';
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundPosition = 'center';
-        document.body.style.backgroundAttachment = 'fixed';
-        
+    // Отключаем CSS-анимации и ставим финальное отображение страницы (без интро)
+    function setFinalStateWithoutIntro() {
+        // Отключаем анимации у ключевых элементов чтобы ничего не мерцало
+        if (loader) {
+            loader.style.animation = 'none';
+            loader.style.transition = 'none';
+            loader.style.opacity = '0';
+            loader.style.display = 'none';
+        }
+
+        if (center_container && center_container.parentNode) {
+            center_container.parentNode.removeChild(center_container);
+        }
+
+        if (nameBlock) {
+            nameBlock.style.animation = 'none';
+            nameBlock.style.transition = 'none';
+            // Скрываем и удаляем
+            nameBlock.style.opacity = '0';
+            if (nameBlock.parentNode) nameBlock.parentNode.removeChild(nameBlock);
+        }
+
+        // Тело и header — финальный стиль
+        document.body.style.transition = 'none';
+        document.body.style.backgroundImage = 'none';
+        document.body.style.background = "repeating-linear-gradient(to bottom,rgba(15, 12, 41, 0.3) 0vh,rgba(48, 43, 99, 0.3) 50vh,rgba(15, 12, 41, 0.3) 100vh),rgb(19, 15, 39)";
+
+        if (header) {
+            header.style.animation = 'none';
+            header.style.transition = 'none';
+            header.style.opacity = '1';
+            header.style.position = 'relative';
+            header.style.backgroundColor = 'rgba(0,0,0)';
+            header.style.top = '';
+        }
+
+        if (container_h1) container_h1.style.color = '#fff';
+        if (lang) lang.style.color = '#fff';
+        if (langImg) langImg.src = imageLangLight;
+
+        if (mainContent) {
+            mainContent.style.transition = 'none';
+            mainContent.style.opacity = '1';
+        }
+        if (footer) {
+            footer.style.transition = 'none';
+            footer.style.opacity = '1';
+        }
+
+        navLinks.forEach(link => {
+            link.style.transition = 'none';
+            link.style.color = '#fff';
+        });
+
+        // Инициализация карточек
+        try { initProjectCards(); } catch (e) { console.warn('initProjectCards failed:', e); }
+    }
+
+    // Основная последовательность интро
+    function runIntro() {
+        if (introRunning) return;
+        introRunning = true;
+
+        if (header) {
+            header.style.position = 'fixed';
+            header.style.top = '0';
+        }
+
+        // Начальная задержка (loader виден)
         setTimeout(() => {
-            center_container.remove();
-            
+            if (loader) {
+                loader.style.transition = 'opacity 0.5s ease';
+                loader.style.opacity = '0';
+            }
+
+            // Ставим временный фон (dark)
+            document.body.style.transition = 'background-image 0.5s ease';
+            document.body.style.backgroundImage = 'url(' + imageUrlDark + ')';
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+            document.body.style.backgroundAttachment = 'fixed';
+
             setTimeout(() => {
-                // Первый этап анимации (светлый фон)
-                document.body.style.transition = 'background-image 1.5s ease';
-                header.style.transition = 'all 1.5s ease';
-                nameBlock.style.transition = 'all 1.5s ease';
-                container_h1.style.transition = 'all 1.5s ease';
-                lang.style.transition = 'all 1.5s ease';
-                langImg.style.transition = 'all 1.5s ease';
-                
-                navLinks.forEach(link => {
-                    link.style.transition = 'color 1.5s ease';
-                });
-                
-                document.body.style.backgroundImage = 'url(' + imageUrlLight + ')';
-                header.style.backgroundColor = 'rgba(10, 8, 20, 0.2)';
-                header.style.color = '#000';
-                container_h1.style.color = '#000';
-                lang.style.color = '#000';
-                langImg.src = imageLangDark;
-                nameBlock.style.backgroundColor = 'rgba(164,135,88,0.77)';
+                if (center_container && center_container.parentNode) center_container.parentNode.removeChild(center_container);
 
-                navLinks.forEach(link => {
-                    link.style.color = '#000';
-                });
-
+                // Небольшая пауза, затем первый этап (светлый фон)
                 setTimeout(() => {
-                    // Второй этап анимации (темный фон)
                     document.body.style.transition = 'background-image 1.5s ease';
-                    header.style.transition = 'all 1.5s ease, top 0s ease 1.5s'; // Добавлено управление позицией
-                    nameBlock.style.transition = 'opacity 0.5s ease';
-                    container_h1.style.transition = 'all 1.5s ease';
-                    lang.style.transition = 'all 1.5s ease';
-                    langImg.style.transition = 'all 1.5s ease';
-                    
-                    navLinks.forEach(link => {
-                        link.style.transition = 'color 1.5s ease';
-                    });
+                    if (header) header.style.transition = 'all 1.5s ease';
+                    if (nameBlock) nameBlock.style.transition = 'all 1.5s ease';
+                    if (container_h1) container_h1.style.transition = 'all 1.5s ease';
+                    if (lang) lang.style.transition = 'all 1.5s ease';
+                    if (langImg) langImg.style.transition = 'all 1.5s ease';
+                    navLinks.forEach(link => link.style.transition = 'color 1.5s ease');
 
-                    document.body.style.backgroundImage = "none";
-                    document.body.style.background = "repeating-linear-gradient(to bottom,rgba(15, 12, 41, 0.3) 0vh,rgba(48, 43, 99, 0.3) 50vh,rgba(15, 12, 41, 0.3) 100vh),rgb(19, 15, 39)";
-                    header.style.backgroundColor = 'rgba(0, 0, 0)';
-                    container_h1.style.color = '#fff';
-                    lang.style.color = '#fff';
-                    langImg.src = imageLangLight;
+                    document.body.style.backgroundImage = 'url(' + imageUrlLight + ')';
+                    if (header) header.style.backgroundColor = 'rgba(10, 8, 20, 0.2)';
+                    if (header) header.style.color = '#000';
+                    if (container_h1) container_h1.style.color = '#000';
+                    if (lang) lang.style.color = '#000';
+                    if (langImg) langImg.src = imageLangDark;
+                    if (nameBlock) nameBlock.style.backgroundColor = 'rgba(164,135,88,0.77)';
+                    navLinks.forEach(link => link.style.color = '#000');
 
-                    navLinks.forEach(link => {
-                        link.style.color = '#fff';
-                    });
-                    
-                    nameBlock.style.opacity = '0';
-                    nameBlock.remove();
-                    
+                    // Второй этап — затемнение и удаление nameBlock
                     setTimeout(() => {
-                        header.style.position = 'relative';
-                        mainContent.style.transition = 'opacity 1s ease';
-                        mainContent.style.opacity = '1';
-                        footer.style.transition = 'opacity 1s ease';
-                        footer.style.opacity = '1';
+                        document.body.style.transition = 'background-image 1.5s ease';
+                        if (header) header.style.transition = 'all 1.5s ease, top 0s ease 1.5s';
+                        if (nameBlock) nameBlock.style.transition = 'opacity 0.5s ease';
+                        if (container_h1) container_h1.style.transition = 'all 1.5s ease';
+                        if (lang) lang.style.transition = 'all 1.5s ease';
+                        if (langImg) langImg.style.transition = 'all 1.5s ease';
+                        navLinks.forEach(link => link.style.transition = 'color 1.5s ease');
 
-                    }, 500);
+                        document.body.style.backgroundImage = "none";
+                        document.body.style.background = "repeating-linear-gradient(to bottom,rgba(15, 12, 41, 0.3) 0vh,rgba(48, 43, 99, 0.3) 50vh,rgba(15, 12, 41, 0.3) 100vh),rgb(19, 15, 39)";
+                        if (header) header.style.backgroundColor = 'rgba(0, 0, 0)';
+                        if (container_h1) container_h1.style.color = '#fff';
+                        if (lang) lang.style.color = '#fff';
+                        if (langImg) langImg.src = imageLangLight;
+                        navLinks.forEach(link => link.style.color = '#fff');
 
-                }, 3000);
+                        // Плавно скрываем nameBlock и затем удаляем
+                        if (nameBlock) {
+                            nameBlock.style.opacity = '0';
+                            setTimeout(() => {
+                                if (nameBlock.parentNode) nameBlock.parentNode.removeChild(nameBlock);
+                            }, 450);
+                        }
 
-            }, 1000);
+                        setTimeout(() => {
+                            if (header) header.style.position = 'relative';
+                            if (mainContent) { mainContent.style.transition = 'opacity 1s ease'; mainContent.style.opacity = '1'; }
+                            if (footer) { footer.style.transition = 'opacity 1s ease'; footer.style.opacity = '1'; }
 
-        }, 500);
-        
-    }, 3000);
-    
-    setTimeout(initProjectCards, 3500);
+                            // Записываем флаг в sessionStorage (одна сессия)
+                            try {
+                                sessionStorage.setItem('introPlayed', 'true');
+                                // Если хотите навсегда: localStorage.setItem('introPlayed','true');
+                            } catch (e) {
+                                console.warn('storage set error', e);
+                            }
+
+                            try { initProjectCards(); } catch (e) { console.warn('initProjectCards failed:', e); }
+
+                            introRunning = false;
+                        }, 500);
+
+                    }, 3000);
+
+                }, 1000);
+
+            }, 500);
+
+        }, 3000);
+    }
+
+    // boot — проверяет флаг и запускает либо интро, либо сразу финальное состояние
+    function boot() {
+        let played = false;
+        try {
+            played = sessionStorage.getItem('introPlayed') === 'true';
+            // Для постоянного хранения между сессиями используйте localStorage:
+            // played = localStorage.getItem('introPlayed') === 'true';
+        } catch (e) {
+            console.warn('Storage check failed:', e);
+            played = false;
+        }
+
+        if (played) {
+            // отключаем CSS-анимации и ставим финальное состояние
+            // (это предотвращает мерцание/появление nameBlock)
+            if (loader) loader.style.animation = 'none';
+            if (header) header.style.animation = 'none';
+            if (nameBlock) nameBlock.style.animation = 'none';
+            setFinalStateWithoutIntro();
+        } else {
+            runIntro();
+        }
+    }
+
+    // pageshow для bfcache: если страница восстановлена из кэша или интро уже пройдено — ставим финальное состояние
+    window.addEventListener('pageshow', function (e) {
+        let played = false;
+        try { played = sessionStorage.getItem('introPlayed') === 'true'; } catch (err) { played = false; }
+
+        if (e.persisted || played) {
+            // Если пришли из bfcache или интро уже отмечено — сразу финальное состояние
+            if (loader) loader.style.animation = 'none';
+            if (header) header.style.animation = 'none';
+            if (nameBlock) nameBlock.style.animation = 'none';
+            setFinalStateWithoutIntro();
+        } else {
+            // иначе — запускаем проверку/интро
+            boot();
+        }
+    });
+
+    // Поскольку скрипт подключён внизу body, можно запускать boot прямо сейчас
+    // (вариант с DOMContentLoaded не нужен, но можно оставить, если скрипт может загружаться в head)
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        boot();
+    } else {
+        document.addEventListener('DOMContentLoaded', boot);
+    }
+
+})(); // IIFE end
+
+// ------------------ Остальной код (например, переключение света, бургер-меню) ------------------
+// Переключение дневного/ночного света для коллекций (если у вас есть)
+function switchImageSmoothSingle(imageElement, newSrc) {
+    if (!imageElement || !newSrc) return;
+    imageElement.style.transition = 'opacity .22s ease';
+    imageElement.style.opacity = '0';
+    setTimeout(() => {
+        imageElement.src = newSrc;
+        imageElement.onload = () => {
+            imageElement.style.opacity = '1';
+        };
+    }, 180);
+}
+
+function toggleDayNightMode(button) {
+    if (!button) return;
+    const dataImage = button.getAttribute('data-image');
+    if (!dataImage) return;
+    const section = button.closest('.row, .collection, .collections-content, main') || document;
+    let images = Array.from(section.querySelectorAll(`.${dataImage}`));
+    if (!images.length) images = Array.from(document.querySelectorAll(`.${dataImage}`));
+    if (!images.length) return;
+
+    const textP = button.querySelector('p');
+    const isDay = textP && textP.textContent.trim() === 'Дневной свет';
+    const icon = button.querySelector('img');
+
+    images.forEach(img => {
+        const daySrc = img.getAttribute('data-day');
+        const nightSrc = img.getAttribute('data-night');
+        if (isDay && nightSrc) switchImageSmoothSingle(img, nightSrc);
+        if (!isDay && daySrc) switchImageSmoothSingle(img, daySrc);
+    });
+
+    if (isDay) {
+        if (textP) textP.textContent = 'Уф освещение';
+        if (icon && icon.getAttribute('data-night')) icon.src = icon.getAttribute('data-night');
+        button.style.boxShadow = '0 0 10px 6px rgba(196,77,255,0.06)';
+        button.style.border = '1px solid rgba(196,77,255,0.25)';
+    } else {
+        if (textP) textP.textContent = 'Дневной свет';
+        if (icon && icon.getAttribute('data-day')) icon.src = icon.getAttribute('data-day');
+        button.style.boxShadow = 'none';
+        button.style.border = 'none';
+    }
+}
+
+// Делегируем клики для .collection-light
+document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.collection-light, .collection-light-2');
+    if (btn) toggleDayNightMode(btn);
 });
 
-    // ——— Мобильное бургер-меню ———
+// Бургер-меню (как было)
+(function() {
     const burgerMenu = document.querySelector('.burger-menu');
     const burgerIcon = document.querySelector('.burger-icon');
     const nav = document.querySelector('.nav');
@@ -212,7 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.toggle('active');
         });
 
-        // При клике по ссылке меню закрывается
         nav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
@@ -220,3 +374,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+})();

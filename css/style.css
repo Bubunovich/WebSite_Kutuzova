@@ -32,6 +32,13 @@ html {
     box-sizing: border-box;
 }
 
+.no-intro .loader,
+.no-intro .center-container,
+.no-intro .name-block { display: none !important; animation: none !important; transition: none !important; }
+.no-intro .header { animation: none !important; opacity: 1 !important; position: relative !important; background-color: rgba(0,0,0) !important; }
+.no-intro body { background: repeating-linear-gradient(to bottom,rgba(15, 12, 41, 0.3) 0vh,rgba(48, 43, 99, 0.3) 50vh,rgba(15, 12, 41, 0.3) 100vh),rgb(19, 15, 39) !important; }
+
+
 body {
     display: flex;
     flex-direction: column;

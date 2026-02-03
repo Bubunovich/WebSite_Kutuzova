@@ -761,5 +761,13 @@
     </footer>
 
     <script src="/javascript/script.js"></script>
+
+    <script>
+        try {
+            if (sessionStorage.getItem('introPlayed') === 'true') {
+            document.documentElement.classList.add('no-intro');
+            }
+        } catch (e) { /* ignore */ }
+    </script>
 </body>
 </html>
