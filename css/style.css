@@ -243,6 +243,11 @@ body {
     padding-bottom: 50px;
 }
 
+.collection-card.vatikan {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+}
+
 .collection-card.flowers {
     display: grid;
     grid-template-columns: 2fr 2fr;
