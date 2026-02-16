@@ -44,12 +44,13 @@ body {
 
 .header { 
     font-family: 'Monument Extended';
-    position: relative;
+    position: fixed;
     top: 0;
     width: 100%;
     padding: 0.8% 5%;
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
+    z-index: 9999;
 }
 
 .container {
@@ -120,8 +121,8 @@ body {
 }
 
 .main-content {
-    max-width: 1340px;
-    margin: 0 auto;
+    max-width: 1800px;
+    margin: 0 auto !important;
 }
 
 .circle {
@@ -217,7 +218,7 @@ body {
     text-align: center;
     font-size: 96px;
     font-family: 'PT Serif Caption';
-    margin-top: 40px;
+    margin-top: 140px;
 }
 
 .collection-subtitle {
@@ -235,18 +236,243 @@ body {
     padding-bottom: 50px;
 }
 
-.collection-card.volume-moon {
+.collection-card.angel {
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 150px;
+    padding-bottom: 50px;
+    justify-content: center;
+}
+
+.collection-card.europe {
+    display: flex;
+    flex-direction: column;
     margin-top: 150px;
     padding-bottom: 50px;
 }
 
-.img-city-vatikan {
-    width: 100%;
-    height: 100%;
-    max-width: 737px;
-    max-height: 499px;
+.collection-card.women {
+    max-width: 1700px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    margin: 0 auto;
+}
+
+.collection-card-2.africa {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    margin-top: 150px;
+    padding-bottom: 50px;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-card.three-two {
+    display: grid;
+    grid-template-columns: 0.8fr 2fr;
+    margin-top: 150px;
+    padding-bottom: 50px;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-card.africa {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-card.africa-one {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-text.africa-one {
+    margin-left: 30px;
+}
+
+.collection-card.three {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 1.7fr 2fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-card.three-one {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-card.three-one img{
+    justify-self: end;
+    margin-right: 50px;
+}
+
+.collection-card.apple-one {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-card.apple-one img{
+    justify-self: end;
+    margin-right: 50px;
+}
+
+.collection-card.volume-moon {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-img.volume-moon {
+    justify-self: end;
+    margin-right: 50px;
+}
+
+.collection-card.apple {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 1.7fr 2fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-text.apple {
+    margin-right: 50px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.apple {
+    align-self: flex-end;
+}
+
+.collection-card.three-O {
+    max-width: 1340px;
+    display: grid;
+    grid-template-columns: 1.7fr 2fr;
+    margin: 0 auto;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-text.three-O {
+    margin-right: 50px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.three-O {
+    align-self: flex-end;
+}
+
+.collection-text.three {
+    margin-right: 50px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.three {
+    align-self: flex-end;
+}
+
+.collection-text.africa {
+    margin-right: 30px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.africa {
+    align-self: flex-end;
+}
+
+.collection-img.europe {
+    margin: 0 auto;    
+}
+
+.collection-text.europe {
+    margin-right: 0px;  
+    text-align: center;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: center;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: center;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.europe {
+    align-self: center;
+}
+
+.collection-text.women {
+    margin-right: 30px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.women {
+    align-self: flex-end;
+}
+
+.collection-text.three-two {
+    margin-right: 30px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light.three-two {
+    align-self: flex-end;
+}
+
+.collection-img.europe {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .collection-text {
@@ -277,23 +503,30 @@ body {
 }
 
 .collection-light {
-    padding: 5% 5%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 40px;
     background-color: #211E3A;
-    max-width: 300px;
+    max-width: 350px;
+    max-height: 30px;
     width: 100%;
     border-radius: 100px;
     margin-top: 30px;
+    box-sizing: border-box;
 }
 
 .collection-light-info {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .collection-light-info img {
     width: 24px;
     height: 24px;
+    margin-right: 0px !important;
 }
 
 .collection-light-info p {
@@ -339,11 +572,6 @@ body {
     grid-template-columns: 1.5fr 2fr;
     margin-top: 150px;
     padding-bottom: 50px;
-}
-
-.collection-card-2.japan-fish{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
 }
 
 .collection-img {
@@ -426,6 +654,92 @@ img {
     max-height: 722px;
 }
 
+.img-volume-angel {
+    width: 100%;
+    height: 100%;
+    max-width: 413px;
+    max-height: 550px;
+    margin: 0 auto;
+}
+
+.img-volume-europe {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 487px;
+}
+
+.img-volume-women {
+    width: 100%;
+    height: 100%;
+    max-width: 322px;
+    max-height: 430px;
+}
+
+.img-volume-africa {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 819px;
+}
+
+.img-volume-women-africa {
+    width: 100%;
+    height: 100%;
+    max-width: 350px;
+    max-height: 4467px;
+}
+
+.img-volume-africa-one {
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    max-height: 753px;
+    margin: 0 auto;
+}
+
+.img-volume-three {
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    max-height: 819px;
+}
+
+.img-volume-three-one {
+    width: 100%;
+    height: 100%;
+    max-width: 560px;
+    max-height: 722px;
+}
+
+.img-volume-three-one-one {
+    width: 100%;
+    height: 100%;
+    max-width: 380px;
+    max-height: 384px;
+}
+
+.img-volume-apple {
+    width: 100%;
+    height: 100%;
+    max-width: 580px;
+    max-height: 874px;
+}
+
+.img-volume-apple-one {
+    width: 100%;
+    height: 100%;
+    max-width: 558px;
+    max-height: 722px;
+}
+
+.img-volume-three-O {
+    width: 100%;
+    height: 100%;
+    max-width: 580px;
+    max-height: 874px;
+}
+
 @media (max-width: 1200px) {
 
     .circle {
@@ -433,15 +747,15 @@ img {
     }
 
     .main-content {
-        max-width: 700px;
-        margin: 0 auto;
+        max-width: 1200px;
+        margin: 0 auto !important;
     }
 
     .collection-title {
         text-align: center;
         font-size: 64px;
         font-family: 'PT Serif Caption';
-        margin-top: 40px;
+        margin-top: 80px;
     }
 
     .collection-subtitle {
@@ -721,10 +1035,10 @@ img {
     }
 
     .collection-card {
-        display: flex;
-        flex-direction: column;
-        margin-top: 50px;
-        padding-bottom: 15px;
+        display: flex !important;
+        flex-direction: column !important;
+        margin-top: 50px !important;
+        padding-bottom: 15px !important;
     }
 
     .collection-text {
@@ -933,4 +1247,38 @@ img {
         font-size: 12px;
         margin-top: 20px;
     }
+}
+
+.header {
+  left: 0;
+  right: 0;
+  width: 100vw;           /* всегда равно ширине окна */
+  box-sizing: border-box; /* padding включается в ширину */
+  overflow: hidden;       /* защищаем от содержимого, которое может вылезти */
+}
+
+/* Make inner container responsive and never wider than header */
+.header .container {
+  max-width: 1340px;      /* тот же макс-контейнер, что и main-content */
+  margin: 0 auto;
+  padding: 0 20px;        /* внутренние отступы вместо расширяющих внешних margin */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure no child element in header can push it horizontally */
+.header * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Extra safety: prevent any accidental horizontal scroll */
+html, body {
+  overflow-x: hidden;
+}
+
+/* If you use transform/translate on header children, they can create overflow —
+   optional: ensure no large translate on the header itself */
+.header {
+  transform: none;
 }

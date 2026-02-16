@@ -51,12 +51,13 @@ body {
 
 .header { 
     font-family: 'Monument Extended';
-    position: relative;
+    position: fixed;
     top: 0;
     width: 100%;
     padding: 0.8% 5%;
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
+    z-index: 9999;
 }
 
 .container {
@@ -224,7 +225,7 @@ body {
     text-align: center;
     font-size: 96px;
     font-family: 'PT Serif Caption';
-    margin-top: 40px;
+    margin-top: 140px;
 }
 
 .collection-subtitle {
@@ -240,6 +241,11 @@ body {
     grid-template-columns: 2fr 1.5fr;
     margin-top: 150px;
     padding-bottom: 50px;
+}
+
+.collection-card.flowers {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
 }
 
 .img-city-vatikan {
@@ -277,23 +283,30 @@ body {
 }
 
 .collection-light {
-    padding: 5% 5%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 40px;
     background-color: #211E3A;
-    max-width: 300px;
+    max-width: 350px;
+    max-height: 30px;
     width: 100%;
     border-radius: 100px;
     margin-top: 30px;
+    box-sizing: border-box;
 }
 
 .collection-light-info {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .collection-light-info img {
     width: 24px;
     height: 24px;
+    margin-right: 0px !important;
 }
 
 .collection-light-info p {
@@ -341,9 +354,43 @@ body {
     padding-bottom: 50px;
 }
 
+.collection-card-2.drops {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    margin-top: 150px;
+    padding-bottom: 50px;
+}
+
+.collection-text-2 {
+    margin-right: 50px;  
+    text-align: right;           /* выравнивание строк внутри блока по правому краю */
+    justify-self: end;           /* смещает колонку вправо в grid-контейнере */
+    display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+    flex-direction: column;
+    align-items: flex-end;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+}
+
+.collection-img-2 {
+    justify-self: start;
+}
+
+.collection-card img{
+    justify-self: end;
+    margin-right: 50px;
+}
+
+/* Чтобы кнопка .collection-light также точно прижималась */
+.collection-light-2 {
+    align-self: flex-end;
+}
+
 .collection-card-2.japan-fish{
     display: grid;
     grid-template-columns: 2fr 1fr;
+}
+
+.collection-card-2.japan-samurai-2 {
+    display: none;
 }
 
 .collection-img {
@@ -392,23 +439,30 @@ body {
 }
 
 .collection-light-2 {
-    padding: 5% 5%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 40px;
     background-color: #211E3A;
-    max-width: 300px;
+    max-width: 350px;
+    max-height: 30px;
     width: 100%;
     border-radius: 100px;
     margin-top: 30px;
+    box-sizing: border-box;
 }
 
 .collection-light-info-2 {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .collection-light-info-2 img {
     width: 24px;
     height: 24px;
+    margin-right: 0px !important;
 }
 
 .collection-light-info-2 p {
@@ -549,6 +603,7 @@ img {
     height: 100%;
     max-width: 330px;
     max-height: 501px;
+    margin-right: 0px !important;
 }
 
 .img-japan-flip-flop {
@@ -556,6 +611,7 @@ img {
     height: 100%;
     max-width: 330px;
     max-height: 501px;
+    margin-right: 0px !important;
 }
 
 .img-japan-samurai{
@@ -568,8 +624,9 @@ img {
 .img-japan-fry {
     width: 100%;
     height: 100%;
-    max-width: 700px;
+    max-width: 335px;
     max-height: 520px;
+    margin-right: 0px !important;
 }
 
 .img-japan-drops {
@@ -600,6 +657,83 @@ img {
     max-height: 700px;
 }
 
+.img-start-mountains {
+    width: 100%;
+    height: 100%;
+    max-width: 737px;
+    max-height: 749px;
+}
+
+.img-start-earth {
+    width: 100%;
+    height: 100%;
+    max-width: 737px;
+    max-height: 500px;
+}
+
+.img-start-earth-two {
+    width: 100%;
+    height: 100%;
+    max-width: 737px;
+    max-height: 500px;
+    margin: 0 auto;
+}
+
+.img-start-stones {
+    width: 100%;
+    height: 100%;
+    max-width: 737px;
+    max-height: 600px;
+}
+
+.img-start-sky {
+    width: 100%;
+    height: 100%;
+    max-width: 680px;
+    max-height: 669px;
+}
+
+.img-start-metal {
+    width: 100%;
+    height: 100%;
+    max-width: 547px;
+    max-height: 833px;
+}
+
+.img-start-fire {
+    width: 100%;
+    height: 100%;
+    max-width: 580px;
+    max-height: 874px;
+}
+
+.img-start-hindi {
+    width: 100%;
+    height: 100%;
+    max-width: 819px;
+    max-height: 569px;
+}
+
+.img-start-gravity {
+    width: 100%;
+    height: 100%;
+    max-width: 580px;
+    max-height: 874px;
+}
+
+.collection-card-earth {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.collection-description-gravity {
+    color: #B58FB9;
+    font-size: 20px;
+    padding-top: 30px;
+    line-height: 2;
+}
+
 .collection-card.japan-flowers {
     display: grid;
     grid-template-columns: 1.5fr 2fr;
@@ -620,7 +754,7 @@ img {
         text-align: center;
         font-size: 64px;
         font-family: 'PT Serif Caption';
-        margin-top: 40px;
+        margin-top: 80px;
     }
 
     .collection-subtitle {
@@ -652,6 +786,13 @@ img {
         padding-bottom: 15px;
     }
 
+    .collection-card.japan-fry {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        padding-bottom: 15px;
+    }
+
     .collection-card-2.japan-samurai {
         display: none;
     }
@@ -663,11 +804,17 @@ img {
         padding-bottom: 15px;
     }
 
-    .collection-card-2 {
-        display: grid;
-        grid-template-columns: 1.5fr 2fr;
-        margin-top: 50px;
-        padding-bottom: 15px;
+    .collection-text-2 {
+        margin-right: 0px;  
+        text-align: left;           /* выравнивание строк внутри блока по правому краю */
+        justify-self: start;           /* смещает колонку вправо в grid-контейнере */
+        display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+        flex-direction: column;
+        align-items: flex-start;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+    }
+
+    .collection-light-2 {
+        align-self: flex-start;
     }
 
     .collection-text {
@@ -677,6 +824,12 @@ img {
     }   
 
     .collection-text.japan-flip-flop {
+        padding-top: 10px;
+        margin-right: 0;
+        text-align: left;
+    } 
+    
+    .collection-text.japan-fry {
         padding-top: 10px;
         margin-right: 0;
         text-align: left;
@@ -690,11 +843,19 @@ img {
         float: none;
     }
 
+    .collection-info.japan-fry {
+        float: none;
+    }
+
     .collection-description {
         padding-top: 50px;
     }
 
     .collection-description.japan-flip-flop {
+        padding-top: 30px;
+    }
+
+    .collection-description.japan-fry {
         padding-top: 30px;
     }
 
@@ -705,7 +866,10 @@ img {
     .collection-light.japan-flip-flop {
         float: left;
     }
-    
+
+    .collection-light.japan-fry {
+        float: left;
+    }
 
     .img-city-buhara-tashkent {
         width: 100%;
@@ -865,12 +1029,9 @@ img {
         margin: 0 auto;
     }
 
-    .collection {
-        display: none;
-    }
-
     .collection-mobile {
-        display: block;
+        display: block;   
+        margin-top: 40px;
     }
 
     .collection-title {
@@ -929,6 +1090,26 @@ img {
     .collection-light-info {
         justify-content: center;
     }    
+
+    .collection-light {
+        min-width: 200px;
+        width: 80%;
+        height: 56px;
+        padding: 30px 50px;
+        border-radius: 40px;
+        margin-top: 20px;
+    }
+
+    .collection-light-info {
+        font-size: 16px;
+        gap: 10px;
+    }
+
+    .collection-light-info img {
+        width: 18px;
+        height: 18px;
+        margin-right: 0px;
+    }
 
     .collection-light p {
         font-size: 14px;
