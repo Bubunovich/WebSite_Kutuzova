@@ -2,7 +2,7 @@
 function initProjectCards() {
     const projectCards = document.querySelectorAll('.project-card');
     const firstCard = document.querySelector('.project-card');
-    
+
     if (firstCard) {
         const firstStatus = firstCard.querySelector('.status');
         if (firstStatus) {
@@ -12,7 +12,7 @@ function initProjectCards() {
             firstStatus.setAttribute('data-fixed', 'true');
         }
     }
-    
+
     projectCards.forEach((card, index) => {
         if (index !== 0) {
             const status = card.querySelector('.status');
@@ -23,7 +23,7 @@ function initProjectCards() {
             }
         }
     });
-    
+
     projectCards.forEach(card => {
         card.addEventListener('click', function() {
             const projectId = this.dataset.project;
@@ -62,7 +62,7 @@ function initProjectCards() {
             }
         });
     });
-    
+
     if (firstCard) {
         const firstProjectId = firstCard.dataset.project;
         firstCard.classList.add('active');
@@ -96,7 +96,6 @@ function initProjectCards() {
 
     // Отключаем CSS-анимации и ставим финальное отображение страницы (без интро)
     function setFinalStateWithoutIntro() {
-        // Отключаем анимации у ключевых элементов чтобы ничего не мерцало
         if (loader) {
             loader.style.animation = 'none';
             loader.style.transition = 'none';
@@ -111,12 +110,10 @@ function initProjectCards() {
         if (nameBlock) {
             nameBlock.style.animation = 'none';
             nameBlock.style.transition = 'none';
-            // Скрываем и удаляем
             nameBlock.style.opacity = '0';
             if (nameBlock.parentNode) nameBlock.parentNode.removeChild(nameBlock);
         }
 
-        // Тело и header — финальный стиль
         document.body.style.transition = 'none';
         document.body.style.backgroundImage = 'none';
         document.body.style.background = "repeating-linear-gradient(to bottom,rgba(15, 12, 41, 0.3) 0vh,rgba(48, 43, 99, 0.3) 50vh,rgba(15, 12, 41, 0.3) 100vh),rgb(19, 15, 39)";
@@ -148,7 +145,6 @@ function initProjectCards() {
             link.style.color = '#fff';
         });
 
-        // Инициализация карточек
         try { initProjectCards(); } catch (e) { console.warn('initProjectCards failed:', e); }
     }
 
@@ -162,14 +158,12 @@ function initProjectCards() {
             header.style.top = '0';
         }
 
-        // Начальная задержка (loader виден)
         setTimeout(() => {
             if (loader) {
                 loader.style.transition = 'opacity 0.5s ease';
                 loader.style.opacity = '0';
             }
 
-            // Ставим временный фон (dark)
             document.body.style.transition = 'background-image 0.5s ease';
             document.body.style.backgroundImage = 'url(' + imageUrlDark + ')';
             document.body.style.backgroundSize = 'cover';
@@ -179,7 +173,6 @@ function initProjectCards() {
             setTimeout(() => {
                 if (center_container && center_container.parentNode) center_container.parentNode.removeChild(center_container);
 
-                // Небольшая пауза, затем первый этап (светлый фон)
                 setTimeout(() => {
                     document.body.style.transition = 'background-image 1.5s ease';
                     if (header) header.style.transition = 'all 1.5s ease';
@@ -198,7 +191,6 @@ function initProjectCards() {
                     if (nameBlock) nameBlock.style.backgroundColor = 'rgba(164,135,88,0.77)';
                     navLinks.forEach(link => link.style.color = '#000');
 
-                    // Второй этап — затемнение и удаление nameBlock
                     setTimeout(() => {
                         document.body.style.transition = 'background-image 1.5s ease';
                         if (header) header.style.transition = 'all 1.5s ease, top 0s ease 1.5s';
@@ -216,7 +208,6 @@ function initProjectCards() {
                         if (langImg) langImg.src = imageLangLight;
                         navLinks.forEach(link => link.style.color = '#fff');
 
-                        // Плавно скрываем nameBlock и затем удаляем
                         if (nameBlock) {
                             nameBlock.style.opacity = '0';
                             setTimeout(() => {
@@ -229,10 +220,8 @@ function initProjectCards() {
                             if (mainContent) { mainContent.style.transition = 'opacity 1s ease'; mainContent.style.opacity = '1'; }
                             if (footer) { footer.style.transition = 'opacity 1s ease'; footer.style.opacity = '1'; }
 
-                            // Записываем флаг в sessionStorage (одна сессия)
                             try {
                                 sessionStorage.setItem('introPlayed', 'true');
-                                // Если хотите навсегда: localStorage.setItem('introPlayed','true');
                             } catch (e) {
                                 console.warn('storage set error', e);
                             }
@@ -256,16 +245,12 @@ function initProjectCards() {
         let played = false;
         try {
             played = sessionStorage.getItem('introPlayed') === 'true';
-            // Для постоянного хранения между сессиями используйте localStorage:
-            // played = localStorage.getItem('introPlayed') === 'true';
         } catch (e) {
             console.warn('Storage check failed:', e);
             played = false;
         }
 
         if (played) {
-            // отключаем CSS-анимации и ставим финальное состояние
-            // (это предотвращает мерцание/появление nameBlock)
             if (loader) loader.style.animation = 'none';
             if (header) header.style.animation = 'none';
             if (nameBlock) nameBlock.style.animation = 'none';
@@ -275,25 +260,21 @@ function initProjectCards() {
         }
     }
 
-    // pageshow для bfcache: если страница восстановлена из кэша или интро уже пройдено — ставим финальное состояние
+    // pageshow for bfcache
     window.addEventListener('pageshow', function (e) {
         let played = false;
         try { played = sessionStorage.getItem('introPlayed') === 'true'; } catch (err) { played = false; }
 
         if (e.persisted || played) {
-            // Если пришли из bfcache или интро уже отмечено — сразу финальное состояние
             if (loader) loader.style.animation = 'none';
             if (header) header.style.animation = 'none';
             if (nameBlock) nameBlock.style.animation = 'none';
             setFinalStateWithoutIntro();
         } else {
-            // иначе — запускаем проверку/интро
             boot();
         }
     });
 
-    // Поскольку скрипт подключён внизу body, можно запускать boot прямо сейчас
-    // (вариант с DOMContentLoaded не нужен, но можно оставить, если скрипт может загружаться в head)
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
         boot();
     } else {
@@ -302,8 +283,9 @@ function initProjectCards() {
 
 })(); // IIFE end
 
-// ------------------ Остальной код (например, переключение света, бургер-меню) ------------------
-// Переключение дневного/ночного света для коллекций (если у вас есть)
+// ------------------ Остальной код ------------------
+
+// Плавная замена src с затуханием
 function switchImageSmoothSingle(imageElement, newSrc) {
     if (!imageElement || !newSrc) return;
     imageElement.style.transition = 'opacity .22s ease';
@@ -316,6 +298,7 @@ function switchImageSmoothSingle(imageElement, newSrc) {
     }, 180);
 }
 
+// Переключение дневной/ночной кнопки (по клику)
 function toggleDayNightMode(button) {
     if (!button) return;
     const dataImage = button.getAttribute('data-image');
@@ -349,13 +332,80 @@ function toggleDayNightMode(button) {
     }
 }
 
-// Делегируем клики для .collection-light
+// Делегирование кликов для .collection-light
 document.addEventListener('click', function (e) {
     const btn = e.target.closest('.collection-light, .collection-light-2');
     if (btn) toggleDayNightMode(btn);
 });
 
-// Бургер-меню (как было)
+// ------------------ Hover switch for collections images: day <-> night ------------------
+(function () {
+  const collGrid = document.querySelector('.collections-grid');
+  if (!collGrid) return;
+
+  const imgs = Array.from(collGrid.querySelectorAll('img[data-day][data-night]'));
+  if (!imgs.length) return;
+
+  // preload night images
+  imgs.forEach(img => {
+    const night = img.dataset.night;
+    if (night) {
+      const pre = new Image();
+      pre.src = night;
+    }
+  });
+
+  // helper: swap with fade
+  function swapTo(img, src) {
+    if (!img || !src) return;
+    // quick filename check to avoid redundant swaps
+    try {
+      const current = img.src.split('/').pop();
+      const target = src.split('/').pop();
+      if (current === target) return;
+    } catch (e) {
+      // ignore
+    }
+    img.style.transition = 'opacity 220ms ease';
+    img.style.opacity = '0';
+    setTimeout(() => {
+      img.src = src;
+      if (img.complete) {
+        img.style.opacity = '1';
+      } else {
+        img.onload = () => { img.style.opacity = '1'; img.onload = null; };
+      }
+    }, 180);
+  }
+
+  imgs.forEach(img => {
+    const day = img.dataset.day || img.src;
+    const night = img.dataset.night;
+
+    img.addEventListener('mouseenter', () => {
+      if (night) swapTo(img, night);
+    });
+    img.addEventListener('mouseleave', () => {
+      if (day) swapTo(img, day);
+    });
+
+    // accessibility: focus/blur
+    img.addEventListener('focus', () => { if (night) swapTo(img, night); });
+    img.addEventListener('blur',  () => { if (day) swapTo(img, day); });
+
+    // Optional: touch toggle (commented out by default)
+    /*
+    let toggled = false;
+    img.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      toggled = !toggled;
+      swapTo(img, toggled ? night : day);
+    }, {passive:false});
+    */
+  });
+})();
+
+// ------------------ Burger menu ------------------
 (function() {
     const burgerMenu = document.querySelector('.burger-menu');
     const burgerIcon = document.querySelector('.burger-icon');
@@ -375,3 +425,9 @@ document.addEventListener('click', function (e) {
         });
     }
 })();
+
+// ------------------ Optional: init on load if not already done ------------------
+document.addEventListener('DOMContentLoaded', function() {
+    // If project cards didn't init earlier, ensure they exist
+    try { initProjectCards(); } catch (e) { /* ignore */ }
+});

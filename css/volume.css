@@ -244,6 +244,10 @@ body {
     justify-content: center;
 }
 
+.collection-card.angel-mini {
+    display: none;
+}
+
 .collection-card.europe {
     display: flex;
     flex-direction: column;
@@ -258,6 +262,10 @@ body {
     padding-top: 150px;
     padding-bottom: 50px;
     margin: 0 auto;
+}
+
+.collection-card.women-mini {
+    display: none;
 }
 
 .collection-card-2.africa {
@@ -276,6 +284,10 @@ body {
     padding-bottom: 50px;
     margin-top: 150px;
     padding-bottom: 50px;
+}
+
+.collection-card.three-two-mini {
+    display: none;
 }
 
 .collection-card.africa {
@@ -506,9 +518,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 50px 40px;
+    padding: 35px 20px;
     background-color: #211E3A;
-    max-width: 350px;
+    max-width: 300px;
     max-height: 30px;
     width: 100%;
     border-radius: 100px;
@@ -740,6 +752,94 @@ img {
     max-height: 874px;
 }
 
+@media (max-width: 1650px) {
+    .collection-card.women {
+        display: none;
+    }
+    .collection-card.women-pad {
+        display: none;
+    }
+    .collection-img.women {
+        margin: 0 auto;    
+    }
+    .collection-card.women-mini {
+        display: flex;
+        flex-direction: column;
+    }
+    .collection-img.women {
+        margin: 0 auto;    
+    }
+
+    .collection-text.women {
+        margin-right: 0px;  
+        text-align: center;           /* выравнивание строк внутри блока по правому краю */
+        justify-self: center;           /* смещает колонку вправо в grid-контейнере */
+        display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+        flex-direction: column;
+        align-items: center;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+    }
+
+    /* Чтобы кнопка .collection-light также точно прижималась */
+    .collection-light.women {
+        align-self: center;
+    }
+
+    .collection-card.africa-one {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .collection-img.africa-one {
+        margin: 0 auto; 
+        max-width: 1340px;   
+    }
+
+    .collection-text.africa-one {
+        margin-right: 0px;  
+        text-align: center;           /* выравнивание строк внутри блока по правому краю */
+        justify-self: center;           /* смещает колонку вправо в grid-контейнере */
+        display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+        flex-direction: column;
+        align-items: center;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+    }
+
+    /* Чтобы кнопка .collection-light также точно прижималась */
+    .collection-light.africa-one {
+        align-self: center;
+    }
+
+    .collection-card.three-two {
+        display: none;
+    }
+
+    .collection-card.three-two-pad {
+        display: none;
+    }
+
+    .collection-card.three-two-mini {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .collection-img.three-two {
+        margin: 0 auto;    
+    }
+
+    .collection-text.three-two {
+        margin-right: 0px;  
+        text-align: center;           /* выравнивание строк внутри блока по правому краю */
+        justify-self: center;           /* смещает колонку вправо в grid-контейнере */
+        display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+        flex-direction: column;
+        align-items: center;       /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
+    }
+
+    /* Чтобы кнопка .collection-light также точно прижималась */
+    .collection-light.three-two {
+        align-self: center;
+    }
+}
+
 @media (max-width: 1200px) {
 
     .circle {
@@ -765,227 +865,111 @@ img {
         margin-top: 15px;
     }
 
-    .collection-name {
-        font-size: 30px;
-    }
-
-    .collection-name-2 {
-        font-size: 30px;
-    }
-
-    .collection-card {
-        display: grid;
-        grid-template-columns: 2fr 1.5fr;
-        margin-top: 50px;
-        padding-bottom: 15px;
-    }
-
-    .collection-card.japan-flip-flop {
-        display: flex;
-        flex-direction: column;
-        margin-top: 50px;
-        padding-bottom: 15px;
-    }
-
-    .collection-card-2.japan-samurai {
+    .collection-card.angel {
         display: none;
     }
 
-    .collection-card-2.japan-samurai-2 {
+    .collection-card.angel-mini {
         display: flex;
         flex-direction: column;
-        margin-top: 50px;
-        padding-bottom: 15px;
     }
 
-    .collection-card-2 {
+    .collection-img.angel {
+        margin: 0 auto;   
+    }
+
+    .collection-card.angel-2 {
         display: grid;
-        grid-template-columns: 1.5fr 2fr;
-        margin-top: 50px;
-        padding-bottom: 15px;
+        grid-template-columns: 1fr 1fr;
+        margin: 0 auto;
+        padding-top: 20px;
+        gap: 20px;
     }
 
-    .collection-text {
-        padding-top: 10px;
-        margin-right: 0;
-        text-align: right;
-    }   
-
-    .collection-text.japan-flip-flop {
-        padding-top: 10px;
-        margin-right: 0;
-        text-align: left;
-    }   
-
-    .collection-info {
-        float: right;
+    .collection-card.women-mini {
+        display: none;
     }
 
-    .collection-info.japan-flip-flop {
-        float: none;
+    .collection-card.women {
+        display: none;
+    }
+    .collection-card.women-pad {
+        display: flex;
+        flex-direction: column;
     }
 
-    .collection-description {
-        padding-top: 50px;
+    .collection-img.women {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
     }
 
-    .collection-description.japan-flip-flop {
-        padding-top: 30px;
+    .collection-card.women-pad-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0 auto;
+        gap: 20px;
     }
 
-    .collection-light {
-        float: right;
+    .collection-img.women {
+        margin: 0 auto;    
     }
 
-    .collection-light.japan-flip-flop {
-        float: left;
-    }
-    
-
-    .img-city-buhara-tashkent {
-        width: 100%;
-        height: 100%;
-        max-width: 737px;
-        max-height: 499px;
+    .collection-text.women {
+        margin-right: 0px;  
+        text-align: center;           /* выравнивание строк внутри блока по правому краю */
+        justify-self: center;           /* смещает колонку вправо в grid-контейнере */
+        display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+        flex-direction: column;
+        align-items: center;  
+        padding-top: 0;     /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
     }
 
-    .img-sneg-v-pitere {
-        width: 100%;
-        max-width: 600px;
-        max-height: 400px;
+    .img-volume-women {
+        margin: 0 auto;
     }
 
-    .img-lucky-day {
-        width: 100%;
-        max-width: 718px;
-        max-height: 724px;
+    .collection-card.three-two-mini {
+        display: none;
     }
 
-    .img-city-white-city {
-        width: 100%;
-        height: 100%;
-        max-width: 547px;
-        max-height: 833px;
-        margin-left: 0;
+    .collection-card.three-two {
+        display: none;
+    }
+    .collection-card.three-two-pad {
+        display: flex;
+        flex-direction: column;
     }
 
-    .img-piter-moskva {
-        width: 100%;
-        height: 100%;
-        max-width: 737px;
-        max-height: 603px;
+    .collection-img.three-two {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
     }
 
-    .img-city-london {
-        width: 100%;
-        height: 100%;
-        max-width: 737px;
-        max-height: 499px;
+    .collection-card.three-two-pad-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 0 auto;
+        gap: 20px;
     }
 
-    .img-solnechnoe-utro {
-        width: 100%;
-        height: 100%;
-        max-width: 728px;
-        max-height: 836px;
+    .collection-img.three-two {
+        margin: 0 auto;    
     }
 
-    .img-city-gorod-zolotoi {
-        width: 100%;
-        height: 100%;
-        max-width: 737px;
-        max-height: 600px;
+    .collection-text.three-two {
+        margin-right: 0px;  
+        text-align: center;           /* выравнивание строк внутри блока по правому краю */
+        justify-self: center;           /* смещает колонку вправо в grid-контейнере */
+        display: flex;               /* делаем flex, чтобы можно было управлять вложенными элементами */
+        flex-direction: column;
+        align-items: center;  
+        padding-top: 0;     /* прижимает вложенные элементы (кнопка, .collection-light) к правому краю */
     }
 
-    .img-lumines-mary {
-        width: 100%;
-        height: 100%;
-        max-width: 484px;
-        max-height: 853px;
-    }
-
-    .img-lumines-rada {
-        width: 100%;
-        height: 100%;
-        max-width: 737px;
-        max-height: 1008px;
-    }
-
-    .img-lumines-dreams {
-        width: 100%;
-        height: 100%;
-        max-width: 680px;
-        max-height: 808px;
-    }
-
-    .img-lumines-game {
-        width: 100%;
-        height: 100%;
-        max-width: 737px;
-        max-height: 1008px;
-    }
-
-    .img-lumines-time {
-        width: 100%;
-        height: 100%;
-        max-width: 680px;
-        max-height: 808px;
-    }
-
-    .img-japan-flip-flop-one {
-        width: 100%;
-        height: 100%;
-        max-width: 330px;
-        max-height: 501px;
-    }
-
-    .img-japan-flip-flop {
-        width: 100%;
-        height: 100%;
-        max-width: 330px;
-        max-height: 501px;
-    }
-
-    .img-japan-samurai{
-        width: 100%;
-        height: 100%;
-        max-width: 330px;
-        max-height: 501px;
-    }
-
-    .img-japan-fry {
-        width: 100%;
-        height: 100%;
-        max-width: 700px;
-        max-height: 520px;
-    }
-
-    .img-japan-drops {
-        width: 100%;
-        height: 100%;
-        max-width: 500px;
-        max-height: 708px;
-    }
-
-    .img-japan-flying {
-        width: 100%;
-        height: 100%;
-        max-width: 700px;
-        max-height: 520px;
-    }
-
-    .img-japan-fish {
-        width: 100%;
-        height: 100%;
-        max-width: 417px;
-        max-height: 900px;
-    }
-
-    .img-japan-flowers {
-        width: 100%;
-        height: 100%;
-        max-width: 429px;
-        max-height: 700px;
+    .img-volume-three-one-one {
+        margin: 0 auto;
     }
 }
 
@@ -1258,7 +1242,7 @@ img {
 }
 
 /* Make inner container responsive and never wider than header */
-.header .container {
+.container {
   max-width: 1340px;      /* тот же макс-контейнер, что и main-content */
   margin: 0 auto;
   padding: 0 20px;        /* внутренние отступы вместо расширяющих внешних margin */

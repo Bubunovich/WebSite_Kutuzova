@@ -712,19 +712,16 @@ body {
 /* Блок с фото */
 .about-author-photo-container {
     position: relative;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 356/320;
-    margin: auto 7%;
 }
 
 .about-author-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 514px;
+    height: 464px;
     border-radius: 16px;
     position: relative;
     z-index: 1;
+    margin-top: clamp(15px, 4vw, 50px);
+    float: right;
 }
 
 .about-author-photo-overlay {
@@ -742,17 +739,17 @@ body {
 .about-author-info {
     display: flex;
     flex-direction: column;
-    margin-top: clamp(15px, 4vw, 50px);
+    margin-top: clamp(15px, 2vw, 40px);
 }
 
 .about-author-header {
-    margin-bottom: clamp(15px, 1.5vw, 40px);
+    margin-bottom: clamp(15px, 1.2vw, 35px);
 }
 
 .about-author-name {
     font-size: clamp(20px, 2.5vw, 30px);
     line-height: clamp(24px, 3vw, 36px);
-    margin-bottom: clamp(15px, 1.5vw, 40px);
+    margin-bottom: clamp(15px, 0.8vw, 20px);
     color: #F0F2F5;
 }
 
@@ -764,7 +761,7 @@ body {
 
 /* Биография */
 .about-author-bio {
-    margin-bottom: clamp(20px, 4vw, 40px);
+    margin-bottom: clamp(20px, 2vw, 20px);
 }
 
 .about-author-bio-highlight,

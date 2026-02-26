@@ -291,9 +291,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 50px 40px;
+    padding: 35px 20px;
     background-color: #211E3A;
-    max-width: 350px;
+    max-width: 300px;
     max-height: 30px;
     width: 100%;
     border-radius: 100px;
@@ -447,9 +447,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 50px 40px;
+    padding: 35px 20px;
     background-color: #211E3A;
-    max-width: 350px;
+    max-width: 300px;
     max-height: 30px;
     width: 100%;
     border-radius: 100px;
@@ -1037,6 +1037,10 @@ img {
     .collection-mobile {
         display: block;   
         margin-top: 40px;
+    }
+
+    .collection {
+        display: none;
     }
 
     .collection-title {
